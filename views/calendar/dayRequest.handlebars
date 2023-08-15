@@ -1,0 +1,58 @@
+<div class="dashboard-request">
+    <h1>Agendamentos para - {{ day }}/{{ realMonth }}/{{ year }}</h1>
+    <form class="form-control" action="/{{year}}/{{month}}/{{day}}" method="POST">
+
+        <input type="hidden" name="month" value="{{month}}">
+        <input type="hidden" name="year" value="{{year}}">
+        <input type="hidden" name="day" value="{{day}}">
+        <input type="hidden" name="date" value="{{year}}-{{month}}-{{day}}">
+
+        <div class="availableHours">
+            <ul>
+                {{#each hoursWithAvailability}}
+                <li data-hour="{{ hour }}">
+                    <div class="hours">
+                        {{#if isAvailable}}
+                        <div class="square">
+                            <input type="submit" name="hour" value="{{ hour }}" class="available-time">
+                        </div>
+                        <div class="infoAvailability">
+                            <h3>Horário Disponivel</h3>
+                        </div>
+                        <div class="markOff">
+                            <img src="/img/vecteezy_happy-dog-an-illustration-of-a-cute-dog-playing-with-his_9551670.png"
+                                alt="Logo">
+                        </div>
+                        {{else}}
+                        {{#if verifiedUser}}
+                        <div class="square">
+                            <p class="unavailable-time">{{ hour }}</p>
+                        </div>
+                        <div class="infoAvailability">
+                            <h3 class="userName">{{../userName}}</h3>
+                        </div>
+                        <div class="markOff">
+                            <label for="hour">Cancelar:</label>
+                            <input type="submit" name="hour" value="{{hour}}">
+                        </div>
+                        {{else}}
+                        <div class="square">
+                            <p class="unavailable-time">{{ hour }}</p>
+                        </div>
+                        <div class="infoAvailability">
+                            <h3>Horário Ocupado</h3>
+                        </div>
+                        <div class="markOff">
+                            <img src="/img/vecteezy_happy-dog-an-illustration-of-a-cute-dog-playing-with-his_9551670.png"
+                                alt="Logo">
+                        </div>
+                        {{/if}}
+                        {{/if}}
+                        <input type="hidden" name="hours" value="{{ hour }}">
+                    </div>
+                </li>
+                {{/each}}
+            </ul>
+        </div>
+    </form>
+</div>

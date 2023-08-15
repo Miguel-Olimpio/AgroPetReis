@@ -1,0 +1,954 @@
+* {
+  font-family: Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #222;
+  color: #fff;
+}
+
+/* NAVBAR */
+#logo img {
+  height: 40px;
+}
+
+#navbar {
+  padding: 1.2em 2.4em;
+  margin-bottom: 1em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #222;
+  color: #fff;
+  border-bottom: 1px solid #f6982d;
+}
+
+#navbar ul {
+  display: flex;
+  list-style: none;
+}
+
+#navbar ul li {
+  border-left: 1px solid #f6982d;
+  padding: 0.8em;
+}
+
+#navbar ul li a {
+  text-decoration: none;
+  color: #fff;
+  transition: 0.5s;
+  font-weight: bold;
+}
+
+#navbar ul li a:hover {
+  color: #f6982d;
+}
+
+/* CONTAINER */
+.message {
+  padding: 1em;
+  color: #004085;
+  background-color: #cce5ff;
+  border: 1px soli d#b8daff;
+  border-radius: 5px;
+  text-align: center;
+  margin: 0 auto 2em;
+  max-width: 60%;
+}
+
+.container {
+  min-height: 60vh;
+  padding: 2em;
+}
+
+/* CALENDAR */
+.calendar {
+  width: 70%;
+  margin: 0 auto;
+  text-align: center;
+  border: 1px solid #f6982d;
+}
+
+.monthYear {
+  border-bottom: 1px solid #f6982d;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+}
+
+.monthYear i {
+  color: #f6982d;
+  font-size: 30px;
+  transition: all 0.5s ease-in-out;
+}
+
+.monthYear i:hover {
+  cursor: pointer;
+  color: #fff
+}
+
+.calendar-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.calendar-table .daysWeek th {
+  font-weight: bold;
+  border-bottom: 1px solid #f6982d;
+}
+
+.calendar-table th,
+.calendar-table td {
+  padding: 10px;
+  font-size: 16px;
+  font-weight: normal;
+  color: #fff;
+  font-size: 20px;
+  transition: all 0.5s ease-in-out;
+}
+
+.calendar-table .empty {
+  visibility: hidden;
+}
+
+.calendar-table td a {
+  text-decoration: none;
+}
+
+.calendar-table td:not(.empty) {
+  color: #fff;
+  opacity: 0.5;
+  border: 1px solid #f6982d;
+  height: 40px;
+  width: 40px;
+  transition: all 0.5s ease-in-out;
+}
+
+
+.calendar-table .nextDays:not(.empty) {
+  opacity: 1;
+}
+
+.calendar-table .nextDays:not(.empty) a {
+  transition: all 0.5s ease-in-out;
+}
+
+.calendar-table .nextDays:not(.empty):hover {
+  cursor: pointer;
+  background-color: #cce5ff;
+  color: #000;
+}
+
+.calendar-table .nextDays:not(.empty):hover a {
+  cursor: pointer;
+  background-color: #cce5ff;
+  color: #000;
+}
+
+.calendar-table .today:not(.empty) {
+  background-color: #f6982d;
+  color: #000;
+  opacity: 1;
+}
+
+.calendar-table .today:not(.empty) a {
+  background-color: #f6982d;
+  color: #000;
+  transition: all 0.5s ease-in-out;
+}
+
+.calendar-table .today:not(.empty):hover {
+  cursor: pointer;
+  background-color: #cce5ff;
+  color: #000;
+}
+
+.calendar-table .today:not(.empty):hover a {
+  cursor: pointer;
+  background-color: #cce5ff;
+  color: #000;
+}
+
+.calendar:not(:first-child) {
+  display: none;
+}
+
+.calendar.active {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
+
+/* LOGIN E REGISTER */
+.auth-container {
+  max-width: 450px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-container h2 {
+  margin-bottom: 1em;
+  color: #fff;
+  border-left: 4px solid #f6982d;
+  padding: 0.3em;
+  width: 100%;
+}
+
+.auth-container a {
+  color: #f6982d;
+}
+
+.form-control {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1em;
+}
+
+.form-control label {
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+.form-control input,
+.form-control textarea {
+  padding: 7px;
+  border-radius: 3px;
+  border: 1px solid #f6982d;
+}
+
+form input[type='submit'],
+.btn {
+  background-color: transparent;
+  color: #f6982d;
+  border: 2px solid #f6982d;
+  padding: 0.5em 1.3em;
+  margin-bottom: 1em;
+  font-size: 1em;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: 0.5s;
+}
+
+form input[type='submit']:hover,
+.btn:hover {
+  background-color: #f6982d;
+  color: #fff;
+}
+
+/* REQUEST */
+
+.dashboard-request {
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-request h1 {
+  color: #f6982d;
+}
+
+.availableHours {
+  position: relative;
+}
+
+.availableHours .userName {
+  color: #f6982d;
+}
+
+.availableHours ul {
+  list-style: none;
+}
+
+.availableHours ul .hours {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.availableHours ul .hours .square{
+  width: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.availableHours ul .hours .infoAvailability{
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.availableHours ul .hours .markOff{
+  width: 15%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.availableHours li {
+  padding: 15px;
+  font-size: 20px;
+  border-bottom: solid 1px #f6982d;
+}
+
+.availableHours ul img {
+  height: 40px;
+  margin-right: 10px;
+}
+
+.availableHours .available-time {
+  border: solid 1px #222;
+  font-size: 20px;
+  padding: 20px;
+  background-color: rgba(0, 128, 0, 0.8);
+  box-shadow: 1px 1px #363636;
+  color: black;
+  cursor: pointer;
+  margin-bottom: 0;
+}
+
+.availableHours .unavailable-time {
+  border: solid 1px #222;
+  font-size: 20px;
+  padding: 20px;
+  background-color: rgba(255, 0, 0, 0.8);
+  box-shadow: 1px 1px #363636;
+  color: black;
+  font-weight: 700;
+}
+
+.availableHours .markOff input {
+  margin-bottom: 0;
+  margin-left: 10px;
+}
+
+.teste {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.teste h1 {
+  margin-bottom: 20px;
+}
+
+.teste h2 {
+  margin-top: 20px;
+}
+
+.requestHour {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 0;
+  margin-top: 1.5em;
+}
+
+.requestHour .row {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: solid 1px #f6982d;
+  padding: 10px 0;
+}
+
+.requestHour h3 {
+  padding-top: 20px;
+  margin-right: 25px;
+  color: #f6982d;
+}
+
+.requestHour .res {
+  color: #fff;
+}
+
+.requestHour .selectPet {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+  border-bottom: solid 1px #f6982d;
+}
+
+.requestHour .selectPet select {
+  color: #fff;
+  border: solid 1px #f6982d;
+  text-align: center;
+  font-size: 16px;
+  padding: 10px 10px;
+  margin-right: 20px;
+}
+
+.requestHour input {
+  margin-top: 60px;
+}
+
+/* DASHBOARD */
+.register-pet {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5em;
+}
+
+.register-pet h1 {
+  border-left: 4px solid #f6982d;
+  padding: 10px;
+}
+
+.dashboard ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+.dashboard li {
+  padding: 15px;
+}
+
+
+.pet-container {
+  border: 1px solid #f6982d;
+  min-width: 250px;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.pet-container h3 {
+  font-size: 28px;
+  padding: 15px 0;
+  color: #f6982d;
+}
+
+.pet-container p {
+  font-size: 18px;
+  padding-bottom: 15px;
+}
+
+.pet-container a {
+  font-size: 18px;
+  text-decoration: none;
+  padding-bottom: 15px;
+  color: #f6982d;
+}
+
+.dashboard .label {
+  font-weight: bold;
+  color: #f6982d;
+  margin-right: 2em;
+}
+
+.dashboard .actions {
+  display: flex;
+}
+
+.dashboard .actions .btn {
+  color: #fff;
+  border-color: #fff;
+  margin: 0 0.5em;
+}
+
+/* CREATE / EDIT FORM */
+.tought-form-container a {
+  color: #f6982d;
+}
+
+.tought-form-container a:hover {
+  color: #fff;
+}
+
+.tought-form-container h1 {
+  border-left: 4px solid #f6982d;
+  padding: 10px;
+  margin-top: 1em;
+}
+
+.tought-form-container form {
+  max-width: 30%;
+  margin-top: 1.5em;
+}
+
+/* VETERINARYRECORD */
+
+.identification {
+  display: flex;
+  align-items: center;
+}
+
+.identification h1 {
+  color: #f6982d;
+  padding-right: 20px;
+  margin-bottom: 10px;
+}
+
+
+.identification .petRecord {
+  color: #fff;
+}
+
+.form-control .nextAppointment {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-control .nextAppointment select {
+  border: 1px solid #f6982d;
+  width: 30%;
+  height: 30px;
+  font-size: 16px;
+}
+
+.dashboard-direction ul {
+  width: 100%;
+}
+
+.dashboard-direction li .liDirection {
+  border-bottom: 1px solid #f6982d;
+}
+
+.dashboard-direction li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  padding: 10px;
+}
+
+.dashboard-direction li a {
+  text-decoration: none;
+  font-size: 22px;
+  color: #f6982d;
+  font-weight: 700;
+}
+
+.dashboard-direction .vtRecord {
+  padding: 10px;
+}
+
+.dashboard-direction .vtRecord .row {
+  display: flex;
+  width: 80%;
+}
+
+.dashboard-direction .vtRecord .row .res {
+  color: #fff;
+}
+
+.dashboard-direction .vtRecord .row h2 {
+  color: #f6982d;
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+
+/* ADMIN QUERIES */
+
+.dashboard-queries {
+  display: flex;
+  flex-direction: column;
+}
+
+.adminQueriesTitle {
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.adminQueriesTitle h1 {
+  color: #f6982d;
+}
+
+.allqueries ul {
+  display: flex;
+  flex-direction: column;
+}
+
+.queries {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  border: 1px solid #f6982d;
+  margin-bottom: 20px;
+}
+
+.allqueries .queries h2 {
+  padding: 20px 0;
+  color: #f6982d;
+  border-bottom: 1px solid #f6982d;
+  margin-bottom: 15px;
+}
+
+.allqueries .queries .queriesHours {
+  padding: 0 20px;
+}
+
+.allqueries .queries .queriesHours h3 {
+  margin-bottom: 15px;
+}
+
+.allqueries .queries .queriesHours a {
+  text-decoration: none;
+  color: #f6982d;
+  margin-bottom: 15px;
+}
+
+.allqueries .queries .queriesHours {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.auth-container .row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.auth-container .row h3 {
+  color: #f6982d;
+}
+
+.allqueries .queries .queriesHours .hourQuery{
+  width: 15%;
+}
+
+.allqueries .queries .queriesHours .userQuery{
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+
+.allqueries .queries .queriesHours .userQuery .res{
+  color: #f6982d;
+  margin-right: 10px;
+}
+
+.allqueries .queries .queriesHours .petNameQuery{
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.allqueries .queries .queriesHours .petNameQuery .res{
+  color: #f6982d;
+  margin-right: 10px;
+}
+
+.allqueries .queries .queriesHours .toFillIn{
+  width: 30%;
+  margin-bottom: 15px;
+}
+
+/* ADMIN ALL USERS */
+
+.dashboard-allUsers .search form{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.dashboard-allUsers .search form{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dashboard-allUsers .search .searchText{
+  padding: 10px;
+  border: 1px solid #f6982d;
+  margin-right: 10px;
+  width: 400px;
+  margin-bottom: 15px;
+}
+
+.dashboard-allUsers .search a{
+  margin-left: 10px;
+}
+
+.dashboard-allUsers ul {
+  list-style: none;
+}
+
+.dashboard-allUsers h1 {
+  color: #f6982d;
+  padding: 10px;
+  border-left: 4px solid #f6982d;
+  margin-bottom: 20px;
+}
+
+.dashboard-allUsers .user {
+  border: 1px solid #f6982d;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.dashboard-allUsers .user .name{
+  display: flex;
+  align-items: center;
+}
+
+.dashboard-allUsers .user .name .res{
+  color: #fff;
+  margin-left: 15px;
+}
+
+.dashboard-allUsers .user ul li h3 {
+  padding-left: 10px;
+  margin: 10px 0;
+  color: #f6982d;
+}
+
+.dashboard-allUsers .user ul .vtRecord li {
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.dashboard-allUsers .user p {
+  padding-left: 20px;
+}
+
+.dashboard-allUsers .user ul .vtRecord li a {
+  text-decoration: none;
+  color: #f6982d;
+  padding-right: 20px;
+}
+
+.dashboard-allUsers .user .title-user {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.title-user {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.caret-icon {
+  transition: transform 0.3s ease-in-out;
+}
+
+.caret-icon.rotated {
+  transform: rotate(180deg);
+}
+
+.vtRecords {
+  display: none;
+  border-top: 1px solid #f6982d;
+}
+
+.vtRecords.active {
+  display: block;
+}
+
+
+.dashboard-allUsers .user .title-user h2 {
+  color: #f6982d;
+}
+
+.dashboard-allUsers .user .title-user svg:hover {
+  cursor: pointer;
+}
+
+
+/* Media query para dispositivos móveis */
+@media (max-width: 768px) {
+  /* CALENDAR */
+  .calendar {
+    width: 100%;
+  }
+
+  .monthYear{
+    padding: 10px;
+  }
+
+  .calendar-table th,
+  .calendar-table td {
+    height: 25px;
+    width: 25px;
+  }
+
+  .calendar-table .daysWeek th{
+    font-size: 12px;
+  }
+
+  .calendar-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  /* PETS */
+  .dashboard ul {
+    display: flex;
+    flex-direction: column;
+  }
+  .veterinaryRecords .liDirection h1{
+    width: 70%;
+    font-size: 15PX;
+  }
+  .identification h1{
+    font-size: 20px;
+  }
+  .vtRecord .row h2{
+    font-size: 18px;
+  }
+
+  /* REQUESTS */
+
+  .availableHours ul .hours .square {
+    padding: 5px;
+  }
+
+  .availableHours ul .hours .markOff label{
+    font-size: 15px;
+  }
+  .availableHours ul .hours .markOff input{
+    font-size: 15px;
+    padding: 10px;
+  }
+
+  .availableHours ul .hours .infoAvailability{
+    width: 50%;
+  }
+
+  .availableHours ul .hours .infoAvailability h3{
+    font-size: 15px;
+  }
+
+  
+.availableHours .available-time {
+  font-size: 20px;
+  padding: 17px;
+}
+
+.availableHours .unavailable-time {
+  font-size: 20px;
+  padding: 17px;
+}
+
+.dashboard-request h1{
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.dashboard-request .form-control h1{
+  font-size: 24px;
+  margin-bottom: 0px;
+}
+
+.dashboard-request .form-control h2{
+  font-size: 20px;
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.dashboard-request .form-control .requestHour {
+  width: 100%;
+  margin-top: 0;
+}
+
+/* ADMIN */
+
+.dashboard-allUsers .search .searchText{
+  width: 80%;
+  margin-bottom: 15px;
+}
+.dashboard-allUsers .search form{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.dashboard-allUsers h1{
+  font-size: 24px;
+}
+
+.dashboard-allUsers .user .title-user h2{
+  font-size: 18px;
+}
+
+.dashboard-allUsers .user .vtRecords li h3 {
+  font-size: 18px;
+}
+
+.dashboard-queries .adminQueriesTitle h1{
+  font-size: 24px;
+  text-align: center;
+}
+
+.dashboard-queries .allqueries h2{
+  font-size: 20px;
+}
+
+.dashboard-queries .allqueries .queries .queriesHours h3{
+  font-size: 15px;
+  padding: 0;
+}
+
+.dashboard-queries .allqueries .queries .queriesHours a{
+  font-size: 15px;
+}
+
+.allqueries .queries .queriesHours{
+  padding: 10px 10px;
+  border-bottom: 1px solid #f6982d;
+}
+
+.allqueries .queries .queriesHours .userQuery{
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center
+}
+
+.allqueries .queries .queriesHours .petNameQuery{
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+}
+
+/* FOOTER */
+footer {
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid #f6982d;
+  background-color: #222;
+}
+
+footer span {
+  font-weight: bold;
+  color: #f6982d;
+}
+
+footer img {
+  padding: 15px;
+}

@@ -1,0 +1,27 @@
+<div class="dashboard-direction">
+    <div class="identification">
+        <h1>Fichas Veterinaria: </h1>
+        <h1 class="petRecord">{{petName}}</h1>
+    </div>
+    <div class="veterinaryRecords">
+        {{#each user.Pets}}
+        <ul>
+            <li>
+                {{#if VeterinaryRecords.length}}
+                <ul>
+                    {{#each VeterinaryRecords}}
+                    <li class="liDirection">
+                            <h1>Ficha veterinaria referente a consulta do dia:</h1>
+                            <a href="/veterinaryRecordDate/{{../../id}}/{{../../petName}}/{{this.dataValues.date}}">{{formatDate
+                                this.dataValues.date}} </a>
+                    </li>
+                    {{/each}}
+                </ul>
+                {{else}}
+                <h3>Este pet não possui ficha veterinaria.</h3>
+                {{/if}}
+            </li>
+        </ul>
+        {{/each}}
+    </div>
+</div>

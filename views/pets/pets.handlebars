@@ -1,0 +1,22 @@
+{{#if messages.message}}
+    <div class="flash-message">
+    </div>
+    {{/if}}
+<div class="dashboard">
+    <div class="register-pet">
+        <h1>Seus Pets</h1>
+        <a href="/registerPet" class="btn">Cadastrar Pet</a>
+    </div>
+    <ul>
+        {{#each Pets}}
+        <li>
+            <div class="pet-container">
+                <h3>{{PetName}}</h3>
+                <p>Especie: {{species}} </p>
+                <p>Raça: {{race}} </p>
+                <a href="/veterinaryRecord/{{id}}">Fichas Veterinária...</a>
+            </div>
+        </li>
+        {{/each}}
+    </ul>
+</div>

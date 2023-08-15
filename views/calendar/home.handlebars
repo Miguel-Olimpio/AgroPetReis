@@ -1,0 +1,45 @@
+<div class="calendar">
+  <div class="monthYear">
+    <a href="/prev-month"><i class="bi bi-chevron-left icon"></i></a>
+    <h1>{{ monthName }} - {{ year }} </h1>
+    <a href="/next-month"><i class="bi bi-chevron-right icon"></i></a>
+  </div>
+  <table class="calendar-table">
+    <tr class="daysWeek">
+      <th>Dom</th>
+      <th>Seg</th>
+      <th>Ter</th>
+      <th>Qua</th>
+      <th>Qui</th>
+      <th>Sex</th>
+      <th>Sab</th>
+    </tr>
+{{#each calendarMatrix}}
+  <tr>
+    {{#each this}}
+      {{#if this}}
+        {{#isEqual this.month ../../currentMonth}}    
+          {{#isGreaterOrEqual this.day ../../currentDay}}
+            {{#isEqual this.day ../../currentDay}}
+              <td class="today"><a href="/{{ this.year }}/{{ this.month }}/{{ this.day }}">{{this.day}}</a></td>
+            {{else}}
+              <td class="nextDays"><a href="/{{ this.year }}/{{ this.month }}/{{ this.day }}">{{this.day}}</a></td>
+            {{/isEqual}}
+          {{else}}
+            <td class="lastDay">{{this.day}}</td>
+          {{/isGreaterOrEqual}}
+        {{else}}
+          {{#isBigger this.month ../../currentMonth}}
+            <td class="nextDays"><a href="/{{ this.year }}/{{ this.month }}/{{ this.day }}">{{this.day}}</a></td>
+          {{else}}
+            <td class="lastDay">{{this.day}}</td>
+          {{/isBigger}}
+        {{/isEqual}}
+      {{else}}
+        <td class="empty"></td>
+      {{/if}}
+    {{/each}}
+  </tr>
+{{/each}}
+  </table>
+</div>

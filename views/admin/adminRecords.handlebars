@@ -1,0 +1,72 @@
+<div class="dashboard-allUsers">
+  {{#if messages.message}}
+  <div class="flash-message">
+  </div>
+  {{/if}}
+  <div class="search">
+    <form action="/allChips" method="GET">
+      <input type="text" class="searchText" name="search" placeholder="Digite o nome do usuario que deseja ">
+      <div class="media">
+      <input type="submit" value="Buscar" class="btn">
+      <a href="/allChips" class="btn">Limpar</a>
+      </div>
+    </form>
+  </div>
+  <h1>Todas as Fichas Veterinárias</h1>
+  {{#each allUsersResume}}
+  <ul>
+    <li>
+      <div class="user">
+        <div class="title-user">
+          <div class="name">
+            <h2>Usuário:</h2>
+            <h2 class="res">{{name}}</h2>
+          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="caret-icon bi bi-caret-down" viewBox="0 0 16 16">
+            <path
+              d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659 4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z" />
+          </svg>
+        </div>
+        {{#if Pets.length}}
+        <ul class="vtRecords">
+          {{#each Pets}}
+          <li>
+            <h3> {{dataValues.PetName}}</h3>
+            <ul>
+              {{#each dataValues.VeterinaryRecords}}
+              <div class="vtRecord">
+                <li>
+                  <p>Data da consulta referente ficha:</p>
+                  <a href="/editVeterinaryRecord/{{dataValues.id}}">{{formatDate dataValues.date}}</a>
+                </li>
+              </div>
+              {{/each}}
+            </ul>
+          </li>
+          {{/each}}
+        </ul>
+        {{else}}
+        <p>Nenhum pet associado a este usuário.</p>
+        {{/if}}
+      </div>
+    </li>
+  </ul>
+  {{/each}}
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const titleUsers = document.querySelectorAll('.title-user');
+
+    titleUsers.forEach((titleUser) => {
+      titleUser.addEventListener('click', () => {
+        const vtRecords = titleUser.nextElementSibling;
+        const caretIcon = titleUser.querySelector('.caret-icon');
+
+        vtRecords.classList.toggle('active');
+        caretIcon.classList.toggle('rotated');
+      });
+    });
+  });
+</script>

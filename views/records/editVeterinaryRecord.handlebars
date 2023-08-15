@@ -1,0 +1,43 @@
+<div class="auth-container">
+    <h2>Editar Registro Veterinário:</h2>
+    <div class="row">
+        <h3>{{resumePet.PetName}} </h3>
+        <h3>{{formatDate resumeVeterinaryRecord.date}}</h3>
+    </div>
+    <form action="/editVeterinaryRecord" method="POST">
+        <input type="hidden" name="id" value="{{id}}">
+        <div class="form-control">
+            <label for="weight">Peso:</label>
+            <input type="text" name="weight" value="{{resumeVeterinaryRecord.Weight}}" required>
+        </div>
+        <div class="form-control">
+            <label for="report">Laudo:</label>
+            <textarea type="text" name="report" rows="5" required> {{resumeVeterinaryRecord.report}} </textarea>
+        </div>
+        <div class="form-control">
+            <label for="revenue">Receita:</label>
+            <textarea type="text" name="revenue" rows="5" required>{{resumeVeterinaryRecord.revenue}}</textarea>
+        </div>
+        <div class="form-control">
+            <label for="nextAppointment">Próximo agendamento:</label>
+            <div class="nextAppointment">
+                <select name="day" required>
+                    {{#each days}}
+                    <option value="{{this}}">{{this}}</option>
+                    {{/each}}
+                </select>
+                <select name="month" required>
+                    {{#each months}}
+                    <option value="{{@index}}">{{this}}</option>
+                    {{/each}}
+                </select>
+                <select name="year" required>
+                    {{#each years}}
+                    <option value="{{this}}">{{this}}</option>
+                    {{/each}}
+                </select>
+            </div>
+        </div>
+        <input type="submit" value="Editar">
+    </form>
+</div>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agro Pet Vet Reis</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+
+<body>
+    <nav id="navbar">
+        <a href="/loginAdm" id="logo">
+            <img src="/img/vecteezy_happy-dog-an-illustration-of-a-cute-dog-playing-with-his_9551670.png" alt="Logo">
+        </a>
+        <ul>
+
+            {{#isLess session.userid 50}}
+            <li><a href="/allChips">Pacientes</a></li>
+            <li><a href="/queries">Consultas</a></li>
+            <li><a href="/logout">Sair</a></li>
+            {{else}}
+            {{#if (isNullOrUndefined session.userid)}}
+            <li><a href="/calendar">Calendario</a></li>
+            <li><a href="/loginUser">Entrar</a></li>
+            <li><a href="/registerUser">Registrar</a></li>
+            {{else}}
+            <li><a href="/calendar">Calendario</a></li>
+            <li><a href="/pets">Pets</a></li>
+            <li><a href="/logout">Sair</a></li>
+            {{/if}}
+            {{/isLess}}
+        </ul>
+    </nav>
+    <div class="container">
+        {{#if messages.message}}
+        <div class="message">
+            {{messages.message}}
+        </div>
+        {{/if}}
+        {{{ body }}}
+    </div>
+    <footer>
+        <a href="/registerAdm" id="logo">
+            <img src="/img/vecteezy_happy-dog-an-illustration-of-a-cute-dog-playing-with-his_9551670.png" alt="Logo">
+        </a>
+        <p><span>AgroPet Reis</span> &copy; 2023</p>
+    </footer>
+</body>
+
+</html>

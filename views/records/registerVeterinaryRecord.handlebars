@@ -1,0 +1,49 @@
+<div class="auth-container">
+    <h2>Registrar Registro Veterinário:</h2>
+    <div class="row">
+        <h3>{{petName}} </h3>
+        <h3>{{formatDate date}}</h3>
+    </div>
+    <input type="hidden" name="PetId" value="{{petId}}">
+    <input type="hidden" name="date" value="{{date}}">
+    <form action="/registerVeterinaryRecord/:id" method="POST">
+        <input type="hidden" name="petName" value="{{petName}}">
+        <input type="hidden" name="PetId" value="{{petId}}">
+        <input type="hidden" name="date" value="{{date}}">
+        <div class="form-control">
+            <label for="weight">Peso:</label>
+            <input type="text" name="weight" placeholder="Digite o peso" required>
+        </div>
+        <div class="form-control">
+            <label for="report">Laudo:</label>
+            <textarea type="text" name="report" rows="5" placeholder="Digite o relatório" required></textarea>
+        </div>
+        <div class="form-control">
+            <label for="revenue">Receita:</label>
+            <textarea type="text" name="revenue" rows="5" placeholder="Digite a receita" required></textarea>
+        </div>
+        <div class="form-control">
+            <label for="nextAppointment">Próximo agendamento:</label>
+            <div class="nextAppointment">
+                <select name="day" required>
+                    {{#each days}}
+                    <option value="{{this}}">{{this}}</option>
+                    {{/each}}
+                </select>
+                <select name="month" required>
+                    {{#each months}}
+                    <option value="{{@index}}">{{this}}</option>
+                    {{/each}}
+                </select>
+                <select name="year" required>
+                    {{#each years}}
+                    <option value="{{this}}">{{this}}</option>
+                    {{/each}}
+                </select>
+            </div>
+
+        </div>
+
+        <input type="submit" value="Registrar">
+    </form>
+</div>
