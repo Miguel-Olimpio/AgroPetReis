@@ -6,20 +6,22 @@ import flash from 'connect-flash';
 import { db } from './db/conn.js'
 import os from 'os';
 import path from 'path';
-import moment from 'moment'
+import moment from 'moment';
+import fs from 'fs';
+
 
 // Models
 import { Scheduling } from './models/request.js';
 import { User } from './models/user.js';
 import { AdminUsers } from './models/admin.js';
 import { Pet } from './models/Pets.js';
-import { VeterinaryRecord } from './models/veterinaryRecord.js'
+import { VeterinaryRecord } from './models/veterinaryRecord.js';
 
 // import Routes
 import { calendarRouter } from './routes/calendarRoutes.js';
 import { authRouter } from './routes/authRoutes.js';
 import { petsRouter } from './routes/petsRoutes.js';
-import { veterinaryRecordRouter } from './routes/veterinaryRecordRoutes.js'
+import { veterinaryRecordRouter } from './routes/veterinaryRecordRoutes.js';
 import { requestRouter } from './routes/requestRoutes.js';
 import { adminRouter } from './routes/adminRoutes.js';
 
