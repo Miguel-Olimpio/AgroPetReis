@@ -64,6 +64,8 @@ class AuthController {
         })
     }
 
+
+    
     static registerUser(req, res) {
         res.render('auth/registerUser')
     }
