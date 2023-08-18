@@ -36,6 +36,17 @@ moment.locale('pt-br');
 const tmpDir = os.tmpdir();
 const sessionsDir = path.join(tmpDir, 'sessions');
 const FileStore = sessionFileStore(session);
+
+const privateKey = fs.readFileSync('path/to/private/key.pem', 'utf8');
+const certificate = fs.readFileSync('path/to/certificate.pem', 'utf8');
+const ca = fs.readFileSync('path/to/ca.pem', 'utf8');
+
+const credentials = {
+  key: privateKey,
+  cert: certificate,
+  ca: ca,
+};
+
 const app = express()
 
 app.engine('handlebars', exphbs.engine())
@@ -105,5 +116,9 @@ db
 // .sync({force:true})
 .sync()
 .then(()=>{
-    app.listen(3000)
+    const server = https.createServer(credentials, app);
+
+    server.listen(443, () => {
+      console.log('Server is running on port 443');
+    });
 }).catch((err)=> console.log(err))
