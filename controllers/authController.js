@@ -88,13 +88,13 @@ class AuthController {
         const hashedPhone = bcrypt.hashSync(telephone, salt)
 
         // Começar com o id = 50
-        // const id = 50
+        const id = 50
 
         const user = {
             name,
             petName,
             telephone: hashedPhone,
-            // id
+            id
         }
         try {
             const createdUser = await User.create(user)
