@@ -70,9 +70,41 @@ class AdminController {
       res.status(500).send("Erro ao buscar as fichas veterinárias.");
     }
   }
+
+  static async removeRequestAdmin(req, res) {
+
+      const { year, month, day, hour,requestId } = req.body
+      const UserId = req.session.userid
+
+      try {
+          await Scheduling.destroy({ where: { id: requestId, AdmUserId: UserId, hour: hour } })
+          await req.flash('message', 'Você cancelou seu agendamento com sucesso');
+          await res.redirect(`/${year}/${month}/${day}/`);
+      } catch (error) { console.log(error) }
+  }
+  
+  static async requestAdminPost(req, res) {
+    const { year, month, day, hour } = req.body;
+        const AdmUserId = req.session.userid;
+        const normalizedDate = `${year}-${month}-${day}`;
+        const normalizedHour = hour;
+        const pet = "admin"
+        const userId = null;
+        try {
+            await Scheduling.create({
+                date: normalizedDate,
+                pet: pet,
+                hour: normalizedHour,
+                UserId: userId,
+                AdmUserId: AdmUserId
+            });
+    
+            await req.flash('message', 'horario indisponivel');
+            await res.redirect(`/${year}/${month}/${day}`);
+        } catch (error) {
+            console.log(error);
+        }
+  }
 }
-
-
-
 
 export { AdminController }

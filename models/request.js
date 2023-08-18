@@ -1,6 +1,7 @@
 import { DataTypes } from "sequelize";
 import { db } from "../db/conn.js";
 import { User } from "./user.js";
+import { AdminUsers } from "./admin.js";
 
 const Scheduling = db.define('Scheduling', {
   date: {
@@ -16,6 +17,10 @@ const Scheduling = db.define('Scheduling', {
     allowNull: false
   }
 });
+
+
+Scheduling.belongsTo(AdminUsers)
+AdminUsers.hasMany(Scheduling)
 
 Scheduling.belongsTo(User)
 User.hasMany(Scheduling)

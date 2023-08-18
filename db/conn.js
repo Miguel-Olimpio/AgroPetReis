@@ -1,10 +1,11 @@
 import { Sequelize } from "sequelize";
 
-// console.log(`---------------------------${process.env.DATABASE_URL}---------------------------`)
+console.log(`---------------------------${process.env.DB_HOST}---------------------------`)
 
 // const db = new Sequelize({
 //     dialect: 'mysql',
 //     host: process.env.DB_HOST,
+//     port: process.env.DB_PORT,
 //     database: process.env.DB_NAME,
 //     username: process.env.DB_USER,
 //     password: process.env.DB_PASSWORD,
@@ -16,10 +17,10 @@ import { Sequelize } from "sequelize";
 // });
 
 // try {
-//     db.authenticate();
-//     console.log('Connected to PlanetScale via Sequelize!');
+//     await db.authenticate();
+//     console.log('Connected to railway database!');
 // } catch (err) {
-//     console.log(err);
+//     console.error('Unable to connect to the database:', err);
 // }
 
 // export { db };

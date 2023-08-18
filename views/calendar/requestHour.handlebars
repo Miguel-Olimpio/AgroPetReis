@@ -1,9 +1,78 @@
 {{#if messages.message}}
-    <div class="flash-message">
-    </div>
-    {{/if}}
+<div class="flash-message"></div>
+{{/if}}
+
 <div class="dashboard-request">
-    
+    {{#isLess userId 50 }}
+    {{#if requestId}}
+    <form class="form-control" action="/removeAdmin" method="POST">
+
+        <input type="hidden" name="month" value="{{month}}">
+        <input type="hidden" name="year" value="{{year}}">
+        <input type="hidden" name="day" value="{{day}}">
+        <input type="hidden" name="date" value="{{year}}-{{month}}-{{day}}">
+        <input type="hidden" name="date" value="{{pet}}">
+        <input type="hidden" name="requestId" value="{{requestId}}">
+
+        <div class="teste">
+            <h1>Deseja cancelar o atendimento ao cliente ?</h1>
+            <h2>Cancelar o atendimento ao cliente para: </h2>
+            <div class="requestHour">
+                <div class="row">
+                    <h3>Data: </h3>
+                    <h3 class="res">{{day}} / {{realMonth}} / {{year}} </h3>
+                </div>
+                <div class="row">
+                    <h3>Hora: </h3>
+                    <h3 class="res">{{hour}} horas</h3>
+                </div>
+                <div class="row">
+                    <h3>Cliente : </h3>
+                    <h3 class="res"> {{userName}}</h3>
+                </div>
+                <div class="row">
+                    <h3> Pet: </h3>
+                    <h3 class="res">{{scheduledPet}}</h3>
+                </div>
+                <input type="submit" name="seila" value="Cancelar">
+                <input type="hidden" name="hour" value="{{hour}}">
+            </div>
+        </div>
+    </form>
+    {{else}}
+    <form class="form-control" action="/{{year}}/{{month}}/{{day}}/{{hour}}/adminRequest" method="POST">
+
+        <input type="hidden" name="month" value="{{month}}">
+        <input type="hidden" name="year" value="{{year}}">
+        <input type="hidden" name="day" value="{{day}}">
+        <input type="hidden" name="date" value="{{year}}-{{month}}-{{day}}">
+        <input type="hidden" name="date" value="{{pet}}">
+        <input type="hidden" name="requestId" value="requestId">
+
+        <div class="teste">
+            <h1>Deseja tornar este horário indisponivel ? </h1>
+            <h2>Tornar o horario indisponivel para: </h2>
+            <div class="requestHour">
+                <div class="row">
+                    <h3>Data: </h3>
+                    <h3 class="res">{{day}} / {{realMonth}} / {{year}} </h3>
+                </div>
+                <div class="row">
+                    <h3>Hora: </h3>
+                    <h3 class="res">{{hour}} horas</h3>
+                </div>
+                <div class="row">
+                    <h3>Usuario : </h3>
+                    <h3 class="res"> {{userName}}</h3>
+                </div>
+                <input type="submit" name="seila" value="Tornar indisponivel">
+                <input type="hidden" name="hour" value="{{hour}}">
+            </div>
+        </div>
+    </form>
+    {{/if}}
+
+    {{else}}
     {{#if requestId}}
     <form class="form-control" action="/remove" method="POST">
 
@@ -79,4 +148,5 @@
         </div>
     </form>
     {{/if}}
+    {{/isLess}}
 </div>

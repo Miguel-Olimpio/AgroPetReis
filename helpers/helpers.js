@@ -1,7 +1,5 @@
 import { Pet } from "../models/Pets.js";
-import { User } from "../models/user.js";
 import moment from "moment";
-import IMask from "imask/holder";
 
 function isEqual(v1, v2, options) {
   if (v1 === v2) {
@@ -70,6 +68,10 @@ async function checkPetRegistered(req, res, next) {
   if (!userid) {
     await req.flash('message', 'Usuário deve estar logado para visualizar os horários disponíveis e realizar o agendamento...');
     return res.redirect('/loginUser');
+  }
+
+  if (userid < 50) {
+    return next();
   }
 
   const userPets = await Pet.findAll({ where: { UserId: userid } });
