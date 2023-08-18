@@ -107,7 +107,7 @@ class AuthController {
     }
 
     static registerAdmin(req, res) {
-        res.render('auth/registerAdm')
+        res.render('auth/registerAdmin')
     }
 
     static async registerAdminPost(req, res) {
@@ -116,14 +116,14 @@ class AuthController {
         // validação da senha
         if (password != confirmpassword) {
             req.flash('message', 'As senhas não são iguais, tente novamente...');
-            res.render('auth/registerAdm', { messages: req.flash() });
+            res.render('auth/registerAdmin', { messages: req.flash() });
             return;
         }
         // checar se o usuario existe
         const checkIfUserExists = await AdminUsers.findOne({ where: { name: name } })
         if (checkIfUserExists) {
             req.flash('message', 'Este usuario ja existe...Tente novamente...');
-            res.render('auth/registerAdm', { messages: req.flash() });
+            res.render('auth/registerAdmin', { messages: req.flash() });
             return
         }
         // criar a senha
