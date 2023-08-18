@@ -104,6 +104,10 @@ app.use('/', petsRouter)
 db
 // .sync({force:true})
 .sync()
+// .then(()=>{
+//     app.listen(process.env.PORT)
+// }).catch((err)=> console.log(err))
+
 .then(()=>{
-    app.listen(process.env.PORT)
+    app.listen(3000)
 }).catch((err)=> console.log(err))
