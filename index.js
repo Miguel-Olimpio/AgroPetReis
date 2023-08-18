@@ -32,6 +32,10 @@ import { CalendarController } from './controllers/calendarController.js';
 // Import Helper
 import { checkAuth, isNullOrUndefined, isEqual, isGreaterOrEqual,isBigger, log, isOccupied, checkPetRegistered,formatDate,formatMonth, isLess, checkAdmAuth } from './helpers/helpers.js';
 
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 moment.locale('pt-br');
 const tmpDir = os.tmpdir();
 const sessionsDir = path.join(tmpDir, 'sessions');
