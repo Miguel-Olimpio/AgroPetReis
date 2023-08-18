@@ -7,8 +7,6 @@ import { db } from './db/conn.js'
 import os from 'os';
 import path from 'path';
 import moment from 'moment'
-import { fileURLToPath } from 'url';
-
 
 // Models
 import { Scheduling } from './models/request.js';
@@ -63,11 +61,11 @@ app.use(
         saveUninitialized: false,
         store: new FileStore({
             logFn: function(){},
-            path: sessionsDir,
+            path: path.join(os.tmpdir(), 'sessions')
         }),
         cookie:{
             secure: false,
-            maxAge: 60000,
+            maxAge: 360000,
             expires: new Date(Date.now() + 360000),
             httpOnly: true
         }

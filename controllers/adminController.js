@@ -26,8 +26,6 @@ function groupSchedulesByDate(schedules) {
   return groupedSchedules;
 }
 
-
-
 class AdminController {
 
   static async showQueries(req, res) {
