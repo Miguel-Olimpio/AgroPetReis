@@ -6,22 +6,20 @@ import flash from 'connect-flash';
 import { db } from './db/conn.js'
 import os from 'os';
 import path from 'path';
-import moment from 'moment';
-import fs from 'fs';
-
+import moment from 'moment'
 
 // Models
 import { Scheduling } from './models/request.js';
 import { User } from './models/user.js';
 import { AdminUsers } from './models/admin.js';
 import { Pet } from './models/Pets.js';
-import { VeterinaryRecord } from './models/veterinaryRecord.js';
+import { VeterinaryRecord } from './models/veterinaryRecord.js'
 
 // import Routes
 import { calendarRouter } from './routes/calendarRoutes.js';
 import { authRouter } from './routes/authRoutes.js';
 import { petsRouter } from './routes/petsRoutes.js';
-import { veterinaryRecordRouter } from './routes/veterinaryRecordRoutes.js';
+import { veterinaryRecordRouter } from './routes/veterinaryRecordRoutes.js'
 import { requestRouter } from './routes/requestRoutes.js';
 import { adminRouter } from './routes/adminRoutes.js';
 
@@ -38,17 +36,6 @@ moment.locale('pt-br');
 const tmpDir = os.tmpdir();
 const sessionsDir = path.join(tmpDir, 'sessions');
 const FileStore = sessionFileStore(session);
-
-const privateKey = fs.readFileSync('path/to/private/key.pem', 'utf8');
-const certificate = fs.readFileSync('path/to/certificate.pem', 'utf8');
-const ca = fs.readFileSync('path/to/ca.pem', 'utf8');
-
-const credentials = {
-  key: privateKey,
-  cert: certificate,
-  ca: ca,
-};
-
 const app = express()
 
 app.engine('handlebars', exphbs.engine())
@@ -118,9 +105,5 @@ db
 // .sync({force:true})
 .sync()
 .then(()=>{
-    const server = https.createServer(credentials, app);
-
-    server.listen(443, () => {
-      console.log('Server is running on port 443');
-    });
+    app.listen(3000)
 }).catch((err)=> console.log(err))
