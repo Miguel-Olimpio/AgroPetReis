@@ -12,6 +12,11 @@ class AuthController {
     }
 
     static async loginUserPost(req, res) {
+        
+        if(req.session.user !== undefined) {
+            req.session.destroy(req.session.user)
+        }
+        
         const { name, telephone } = req.body
 
         // Validar se usuario existe
@@ -65,7 +70,7 @@ class AuthController {
     }
 
 
-    
+
     static registerUser(req, res) {
         res.render('auth/registerUser')
     }
@@ -144,7 +149,9 @@ class AuthController {
             })
         } catch (err) { console.log(err) }
     }
+    
 
+    
     static registerPet(req, res) {
         res.render('auth/registerPet')
     }
