@@ -1,7 +1,5 @@
 import { Sequelize } from "sequelize";
 
-console.log(`---------------------------${process.env.DB_HOST}---------------------------`)
-
 const db = new Sequelize({
     dialect: 'mysql',
     host: process.env.DB_HOST,
