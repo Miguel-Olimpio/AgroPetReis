@@ -1,5 +1,5 @@
-import { Pet } from "../models/Pets.js";
-import { User } from "../models/user.js";
+const { Pet } = require('../models/Pets.js');
+const { User } = require('../models/user.js');
 
 class PetsController{
     static async pets(req, res) {
@@ -10,11 +10,11 @@ class PetsController{
             plain: true
         });
         const Pets = user.Pets.map((result) => result.dataValues);
-        res.render('pets/pets', { Pets, messages: req.flash() });
+        res.render('pets/pets', { Pets });
     }
 
     static async registerPet(req, res) {
-       await res.render('pets/registerPet',{messages: req.flash()})
+       await res.render('pets/registerPet')
     }
 
     static async registerPetPost(req,res){
@@ -26,8 +26,7 @@ class PetsController{
         }
         const pet = await Pet.findOne({ where: { PetName: animal.PetName, UserId:animal.UserId } });
         if (pet) {
-            req.flash('message', 'Este pet ja esta cadastrado...');
-            res.render('pets/registerPet', { messages: req.flash() });
+            res.render('pets/registerPet', { message: 'Este pet ja esta cadastrado...' });
             return;
         }
         await Pet.create(animal)
@@ -37,6 +36,6 @@ class PetsController{
     }
 }
 
-export { PetsController }
+module.exports = { PetsController }
 
 

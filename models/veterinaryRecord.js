@@ -1,6 +1,7 @@
-import { DataTypes } from "sequelize";
-import { db } from "../db/conn.js";
-import { Pet } from "./Pets.js";
+const { DataTypes } = require('sequelize');
+const { db } = require('../db/conn.js');
+const { Pet } = require('./Pets.js');
+
 
 const VeterinaryRecord = db.define('VeterinaryRecord', {
   date: {
@@ -28,4 +29,4 @@ const VeterinaryRecord = db.define('VeterinaryRecord', {
 VeterinaryRecord.belongsTo(Pet)
 Pet.hasMany(VeterinaryRecord)
 
-export { VeterinaryRecord }
+module.exports = { VeterinaryRecord }

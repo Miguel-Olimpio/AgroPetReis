@@ -1,8 +1,10 @@
-import moment from 'moment';
+const moment = require('moment');
 
 class CalendarController {
 
   static async showCalendar(req, res) {
+    const userid = req.session.userid;
+    console.log(userid);
     let currentDate;
     if (!req.session.currentDate) {
       currentDate = moment();
@@ -107,16 +109,5 @@ class CalendarController {
 
 }
 
-export { CalendarController };
+module.exports = { CalendarController };
 
-
-  // static async getDayRequest(req, res) {
-  //   const { year, month, day } = req.params;
-
-  //   const realMonth = parseInt(month) + 1
-  //   res.render('calendar/dayRequest', {
-  //     year,
-  //     realMonth,
-  //     day
-  //   });
-  // }

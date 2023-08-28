@@ -1,6 +1,6 @@
-import express from 'express'
-import { checkPetRegistered } from '../helpers/helpers.js';
-import { RequestController } from '../controllers/requestController.js'
+const express = require('express');
+const { checkPetRegistered } = require('../helpers/helpers.js');
+const { RequestController } = require('../controllers/requestController.js');
 
 const requestRouter = express.Router();
 
@@ -11,4 +11,4 @@ requestRouter.post('/:year/:month/:day/:hour',checkPetRegistered, RequestControl
 requestRouter.post('/remove',checkPetRegistered, RequestController.removeRequest);
 
 
-export { requestRouter }
+module.exports = { requestRouter }

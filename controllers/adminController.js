@@ -1,9 +1,9 @@
-import { Pet } from "../models/Pets.js";
-import { User } from "../models/user.js";
-import { Op } from "sequelize";
-import { Scheduling } from "../models/request.js";
-import { VeterinaryRecord } from "../models/veterinaryRecord.js";
-import moment from "moment";
+const { Pet } = require('../models/Pets.js');
+const { User } = require('../models/user.js');
+const { Op } = require('sequelize');
+const { Scheduling } = require('../models/request.js');
+const { VeterinaryRecord } = require('../models/veterinaryRecord.js');
+const moment = require('moment');
 
 // Função para agrupar as requisições por data
 function groupSchedulesByDate(schedules) {
@@ -15,9 +15,11 @@ function groupSchedulesByDate(schedules) {
       groupedSchedules[date] = [];
     }
 
+    const userName = schedule.User ? schedule.User.dataValues.name : 'admin';
+
     groupedSchedules[date].push({
       hour: schedule.hour,
-      userName: schedule.User.name,
+      userName: userName,
       petName: schedule.pet,
       id: schedule.id
     });
@@ -37,7 +39,7 @@ class AdminController {
 
     // Agrupar as requisições por data
     const groupedSchedules = groupSchedulesByDate(allSchedules);
-
+    
     // Renderizar o template Handlebars com as requisições agrupadas
     res.render('admin/adminQueries', { groupedSchedules });
   }
@@ -62,7 +64,7 @@ class AdminController {
         },
       });
       const allUsersResume = allUsers.map(results => results.dataValues)
-      await res.render('admin/adminRecords', { allUsersResume, messages: req.flash() });
+      await res.render('admin/adminRecords', { allUsersResume });
     } catch (error) {
       console.error(error);
       res.status(500).send("Erro ao buscar as fichas veterinárias.");
@@ -72,12 +74,13 @@ class AdminController {
   static async removeRequestAdmin(req, res) {
 
       const { year, month, day, hour,requestId } = req.body
-      const UserId = req.session.userid
 
       try {
-          await Scheduling.destroy({ where: { id: requestId, AdmUserId: UserId, hour: hour } })
-          await req.flash('message', 'Você cancelou seu agendamento com sucesso');
-          await res.redirect(`/${year}/${month}/${day}/`);
+          await Scheduling.destroy({ where: { id: requestId, hour: hour } })
+          req.flash('message', 'Você cancelou o agendamento com sucesso');
+          return req.session.save(() => {
+            res.redirect(`/${year}/${month}/${day}/`);
+          })
       } catch (error) { console.log(error) }
   }
   
@@ -97,12 +100,15 @@ class AdminController {
                 AdmUserId: AdmUserId
             });
     
-            await req.flash('message', 'horario indisponivel');
-            await res.redirect(`/${year}/${month}/${day}`);
+            req.flash('message', 'horario indisponivel');
+            
+            return req.session.save(() => {
+             res.redirect(`/${year}/${month}/${day}`);
+            })
         } catch (error) {
             console.log(error);
         }
   }
 }
 
-export { AdminController }
+module.exports = { AdminController }

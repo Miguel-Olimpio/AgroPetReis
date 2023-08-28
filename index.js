@@ -1,45 +1,52 @@
-import express from 'express'
-import exphbs from 'express-handlebars'
-import session from 'express-session'
-import sessionFileStore from 'session-file-store';
-import flash from 'connect-flash';
-import { db } from './db/conn.js'
-import os from 'os';
-import path from 'path';
-import moment from 'moment'
+const express = require('express');
+const exphbs = require('express-handlebars');
+const session = require('express-session');
+const flash = require('connect-flash');
+const FileStore = require('session-file-store')(session);
+const { db } = require('./db/conn.js');
+const moment = require('moment');
+const path = require('path');
 
 // Models
-import { Scheduling } from './models/request.js';
-import { User } from './models/user.js';
-import { AdminUsers } from './models/admin.js';
-import { Pet } from './models/Pets.js';
-import { VeterinaryRecord } from './models/veterinaryRecord.js'
+const { Scheduling } = require('./models/request.js');
+const { User } = require('./models/user.js');
+const { AdminUsers } = require('./models/admin.js');
+const { Pet } = require('./models/Pets.js');
+const { VeterinaryRecord } = require('./models/veterinaryRecord.js');
 
 // import Routes
-import { calendarRouter } from './routes/calendarRoutes.js';
-import { authRouter } from './routes/authRoutes.js';
-import { petsRouter } from './routes/petsRoutes.js';
-import { veterinaryRecordRouter } from './routes/veterinaryRecordRoutes.js'
-import { requestRouter } from './routes/requestRoutes.js';
-import { adminRouter } from './routes/adminRoutes.js';
-
+const { calendarRouter } = require('./routes/calendarRoutes.js');
+const { authRouter } = require('./routes/authRoutes.js');
+const { petsRouter } = require('./routes/petsRoutes.js');
+const { veterinaryRecordRouter } = require('./routes/veterinaryRecordRoutes.js');
+const { requestRouter } = require('./routes/requestRoutes.js');
+const { adminRouter } = require('./routes/adminRoutes.js');
 
 // import controller
-import { RequestController } from './controllers/requestController.js';
-import { CalendarController } from './controllers/calendarController.js';
-
+const { RequestController } = require('./controllers/requestController.js');
+const { CalendarController } = require('./controllers/calendarController.js');
 
 // Import Helper
-import { checkAuth, isNullOrUndefined, isEqual, isGreaterOrEqual,isBigger, log, isOccupied, checkPetRegistered,formatDate,formatMonth, isLess, checkAdmAuth } from './helpers/helpers.js';
-
+const {
+  checkAuth,
+  isNullOrUndefined,
+  isEqual,
+  isGreaterOrEqual,
+  isBigger,
+  log,
+  isOccupied,
+  checkPetRegistered,
+  formatDate,
+  formatMonth,
+  isLess,
+  checkAdmAuth
+} = require('./helpers/helpers.js');
 
 const __filename = new URL(import.meta.url).pathname;
 const __dirname = path.dirname(__filename);
 
 moment.locale('pt-br');
-const tmpDir = os.tmpdir();
-const sessionsDir = path.join(tmpDir, 'sessions');
-const FileStore = sessionFileStore(session);
+
 const app = express()
 
 app.engine('handlebars', exphbs.engine())
@@ -52,25 +59,28 @@ app.use(express.urlencoded({
 )
 app.use(express.json())
 
+const sessionsPath = path.join(__dirname, 'sessions');
+
 // session midleware
 app.use(
     session({
-        name: "session",
-        secret: "nosso_secret",
-        resave: false,
-        saveUninitialized: false,
-        store: new FileStore({
-            logFn: function(){},
-            path: path.join(os.tmpdir(), 'sessions')
-        }),
-        cookie:{
-            secure: false,
-            maxAge: 360000,
-            expires: new Date(Date.now() + 360000),
-            httpOnly: true
-        }
+      name: 'session',
+      secret: 'nosso_secret',
+      resave: false,
+      saveUninitialized: false,
+      store: new FileStore({
+        logFn: function () {},
+        path: sessionsPath,
     }),
-)
+      cookie: {
+        secure: false,
+        maxAge: 3600000,
+        expires: new Date(Date.now() + 3600000),
+        httpOnly: true,
+      },
+    }),
+  )
+
 // Flash messages
 app.use(flash())
 

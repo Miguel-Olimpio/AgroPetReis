@@ -1,6 +1,7 @@
-import express from 'express'
-import { checkAuth } from '../helpers/helpers.js';
-import { AdminController } from '../controllers/adminController.js'
+const express = require('express');
+const { checkAuth } = require('../helpers/helpers.js');
+const { AdminController } = require('../controllers/adminController.js');
+
 
 const adminRouter = express.Router();
 
@@ -9,4 +10,4 @@ adminRouter.get('/allchips',checkAuth, AdminController.showRecords);
 adminRouter.post('/removeAdmin',checkAuth, AdminController.removeRequestAdmin);
 adminRouter.post('/:year/:month/:day/:hour/adminRequest',checkAuth, AdminController.requestAdminPost);
 
-export { adminRouter }
+module.exports = { adminRouter }

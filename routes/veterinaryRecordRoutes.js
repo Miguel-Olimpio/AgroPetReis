@@ -1,7 +1,7 @@
-import { VeterinaryRecordController } from '../controllers/veterinaryRecordController.js'
-import  {checkAuth, checkAdmAuth } from '../helpers/helpers.js'
+const { VeterinaryRecordController } = require('../controllers/veterinaryRecordController.js');
+const { checkAuth, checkAdmAuth } = require('../helpers/helpers.js');
+const express = require('express');
 
-import express from 'express'
 
 const veterinaryRecordRouter = express.Router()
 
@@ -19,4 +19,4 @@ veterinaryRecordRouter.get('/editVeterinaryRecord/:id', checkAuth, VeterinaryRec
 
 veterinaryRecordRouter.post('/editVeterinaryRecord',checkAdmAuth, VeterinaryRecordController.editVeterinaryRecordPost )
 
-export { veterinaryRecordRouter }
+module.exports = { veterinaryRecordRouter }

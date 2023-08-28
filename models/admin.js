@@ -1,5 +1,6 @@
-import { DataTypes } from "sequelize";
-import { db } from "../db/conn.js";
+const { DataTypes } = require('sequelize');
+const { db } = require('../db/conn.js');
+
 
 const AdminUsers = db.define('AdmUsers', {
     name: {
@@ -12,4 +13,4 @@ const AdminUsers = db.define('AdmUsers', {
     },
 })
 
-export { AdminUsers }
+module.exports = { AdminUsers }

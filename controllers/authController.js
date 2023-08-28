@@ -1,44 +1,39 @@
-import { AdminUsers } from "../models/admin.js"
-import { User } from "../models/user.js"
-
-import bcrypt from "bcryptjs"
-import { Op } from 'sequelize';
-
+const bcrypt = require('bcryptjs');
+const { Op } = require('sequelize');
+const AdminUsers = require('../models/admin.js').AdminUsers;
+const User = require('../models/user.js').User;
 
 class AuthController {
 
     static async loginUser(req, res) {
-        await res.render('auth/loginUser', { messages: req.flash() })
+        await res.render('auth/loginUser')
     }
 
     static async loginUserPost(req, res) {
-        
-        if(req.session.user !== undefined) {
-            req.session.destroy(req.session.user)
-        }
-        
+                
         const { name, telephone } = req.body
 
         // Validar se usuario existe
         const user = await User.findOne({ where: { name: name } })
         if (!user) {
-            req.flash('message', 'Usuario não encontrado... Tente novamente');
-            res.render('auth/loginUser', { messages: req.flash() });
+            res.render('auth/loginUser', {
+                message: 'Usuário não encontrado... Tente novamente',
+              })
             return;
         }
         // Validar se o telefone esta correto
         const telephoneMatch = bcrypt.compareSync(telephone, user.telephone)
         if (!telephoneMatch) {
-            req.flash('message', 'O telefone esta incorreto... Tente novamente');
-            res.render('auth/loginUser', { messages: req.flash() });
+            res.render('auth/loginUser', { message: 'O telefone esta incorreto... Tente novamente' });
             return;
         }
-
-        req.session.userid = user.id
-
-        req.session.save(() => {
-            res.redirect('/')
-        })
+        try{
+            req.session.userid = user.id
+            console.log(req.session.userid)
+            req.session.save(() => {
+                res.redirect('/pets')
+            })
+        }catch(err){console.log(err)}
     }
 
     static loginAdmin(req, res) {
@@ -51,16 +46,14 @@ class AuthController {
         // Validar se usuario existe
         const user = await AdminUsers.findOne({ where: { name: name } });
         if (!user) {
-            req.flash('message', 'Usuario não encontrado... Tente novamente');
-            res.render('auth/loginAdm', { messages: req.flash() });
+            res.render('auth/loginAdm', { messages: 'Usuario não encontrado... Tente novamente' });
             return;
         }
 
         // Validar se a senha esta correta
         const passwordMatch = bcrypt.compareSync(password, user.password)
         if (!passwordMatch) {
-            req.flash('message', 'A senha esta incorreta... Tente novamente');
-            res.render('auth/loginAdm', { messages: req.flash() });
+            res.render('auth/loginAdm', { message: 'A senha esta incorreta... Tente novamente' });
             return;
         }
         req.session.userid = user.id
@@ -68,8 +61,6 @@ class AuthController {
             res.redirect('/allChips')
         })
     }
-
-
 
     static registerUser(req, res) {
         res.render('auth/registerUser')
@@ -79,15 +70,13 @@ class AuthController {
         const { name, petName, telephone, confirmTelephone } = req.body
         // validação do telefone
         if (telephone != confirmTelephone) {
-            req.flash('message', 'Os telefones não são iguais, tente novamente...');
-            res.render('auth/registerUser', { messages: req.flash() });
+            res.render('auth/registerUser', { message: 'Os telefones não são iguais, tente novamente...' });
             return;
         }
         // checar se o usuario existe
         const checkIfUserExists = await User.findOne({ where: { [Op.or]: [{ name: name }, { telephone: telephone }] } });
         if (checkIfUserExists) {
-            req.flash('message', 'Este usuario ja existe...Tente novamente...');
-            res.render('auth/registerUser', { messages: req.flash() });
+            res.render('auth/registerUser', { message: 'Este usuario ja existe...Tente novamente...' });
             return
         }
         // criptografar telefone
@@ -108,7 +97,7 @@ class AuthController {
             // iniciando a sessão
             req.session.userid = createdUser.id
             req.session.save(() => {
-                res.redirect('/')
+                res.redirect('/registerPet')
             })
         } catch (err) { console.log(err) }
     }
@@ -149,17 +138,11 @@ class AuthController {
             })
         } catch (err) { console.log(err) }
     }
-    
-
-    
-    static registerPet(req, res) {
-        res.render('auth/registerPet')
-    }
 
     static async logout(req, res) {
         req.session.destroy();
-        res.redirect('/');
+        res.redirect('/loginUser');
     }
 }
 
-export { AuthController }
+module.exports = { AuthController }

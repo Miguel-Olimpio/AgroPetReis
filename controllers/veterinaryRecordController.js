@@ -1,8 +1,9 @@
-import { Pet } from "../models/Pets.js";
-import { VeterinaryRecord } from "../models/veterinaryRecord.js";
-import { Scheduling } from "../models/request.js";
-import { User } from "../models/user.js";
-import moment from "moment";
+const { Pet } = require('../models/Pets.js');
+const { VeterinaryRecord } = require('../models/veterinaryRecord.js');
+const { Scheduling } = require('../models/request.js');
+const { User } = require('../models/user.js');
+const moment = require('moment');
+
 
 class VeterinaryRecordController {
   
@@ -153,4 +154,4 @@ class VeterinaryRecordController {
   }
 }
 
-export { VeterinaryRecordController }
+module.exports = { VeterinaryRecordController }

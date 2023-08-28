@@ -1,8 +1,9 @@
-import { User } from "../models/user.js";
-import { Scheduling } from "../models/request.js";
-import { Pet } from "../models/Pets.js";
-import { Op } from "sequelize";
-import { AdminUsers } from "../models/admin.js";
+const { User } = require('../models/user.js');
+const { Scheduling } = require('../models/request.js');
+const { Pet } = require('../models/Pets.js');
+const { Op } = require('sequelize');
+const { AdminUsers } = require('../models/admin.js');
+
 
 class RequestController {
 
@@ -174,11 +175,11 @@ class RequestController {
                     UserId: userId
                 }
             });
-
             if (existingAppointment) {
-
-                await req.flash('message', 'Este pet já possui um agendamento para este dia. Não é possível agendar mais de uma consulta para o mesmo pet no mesmo dia.');
-                return res.redirect(`/${year}/${month}/${day}`);
+                req.flash('message', 'Este pet já possui um agendamento para este dia. Não é possível agendar mais de uma consulta para o mesmo pet no mesmo dia.');
+                return req.session.save(() => {
+                    res.redirect(`/${year}/${month}/${day}`);
+                  })
             }
             const AdmUserId = 1
             // Caso não exista um agendamento para o mesmo pet na data especificada, crie o novo agendamento normalmente.
@@ -190,8 +191,10 @@ class RequestController {
                 AdmUserId: AdmUserId
             });
 
-            await req.flash('message', 'Você Agendou seu horário com sucesso');
-            await res.redirect(`/${year}/${month}/${day}`);
+            req.flash('message', 'Você Agendou seu horário com sucesso');
+            req.session.save(() => {
+                res.redirect(`/${year}/${month}/${day}`);
+              })
         } catch (error) {
             console.log(error);
         }
@@ -203,10 +206,12 @@ class RequestController {
 
         try {
             await Scheduling.destroy({ where: { id: requestId, UserId: UserId, hour: hour } })
-            await req.flash('message', 'Você cancelou seu agendamento com sucesso');
-            await res.redirect(`/${year}/${month}/${day}/`);
+            req.flash('message', 'Você cancelou seu agendamento com sucesso');
+            req.session.save(() => {
+                res.redirect(`/${year}/${month}/${day}`);
+              })
         } catch (error) { console.log(error) }
     }
 }
 
-export { RequestController };
+module.exports = { RequestController };
