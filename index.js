@@ -42,8 +42,8 @@ const {
   checkAdmAuth
 } = require('./helpers/helpers.js');
 
-const __filename = new URL(import.meta.url).pathname;
-const __dirname = path.dirname(__filename);
+// const __filename = new URL(import.meta.url).pathname;
+// const __dirname = path.dirname(__filename);
 
 moment.locale('pt-br');
 
