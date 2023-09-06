@@ -1,4 +1,33 @@
 const moment = require('moment');
+const AdminUsers = require('../models/admin.js').AdminUsers;
+const bcrypt = require('bcryptjs');
+
+// Admin
+
+// const salt = bcrypt.genSaltSync(10)
+// const senha = '123'
+
+// const user = {
+//   name:"admin",
+//   password: bcrypt.hashSync(senha, salt),
+// }
+
+// const createdUser = AdminUsers.create(user)
+
+// Admin visitante
+
+// const salt = bcrypt.genSaltSync(10)
+// const senha = '123'
+
+// const user = {
+//   name:"admin visitante",
+//   password: bcrypt.hashSync(senha, salt),
+// }
+
+// const createdUser = AdminUsers.create(user)
+
+
+
 
 class CalendarController {
 
@@ -30,7 +59,7 @@ class CalendarController {
       currentDay,
       fixedCurrentMonth
     );
-  
+      
     res.render('calendar/home', currentData);
   }
 

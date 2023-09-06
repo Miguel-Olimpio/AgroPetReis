@@ -102,43 +102,6 @@ class AuthController {
         } catch (err) { console.log(err) }
     }
 
-    static registerAdmin(req, res) {
-        res.render('auth/registerAdmin')
-    }
-
-    static async registerAdminPost(req, res) {
-        const { name, password, confirmpassword } = req.body;
-
-        // validação da senha
-        if (password != confirmpassword) {
-            req.flash('message', 'As senhas não são iguais, tente novamente...');
-            res.render('auth/registerAdmin', { messages: req.flash() });
-            return;
-        }
-        // checar se o usuario existe
-        const checkIfUserExists = await AdminUsers.findOne({ where: { name: name } })
-        if (checkIfUserExists) {
-            req.flash('message', 'Este usuario ja existe...Tente novamente...');
-            res.render('auth/registerAdmin', { messages: req.flash() });
-            return
-        }
-        // criar a senha
-        const salt = bcrypt.genSaltSync(10)
-        const hashedPassword = bcrypt.hashSync(password, salt)
-        const user = {
-            name,
-            password: hashedPassword
-        }
-        try {
-            const createdUser = await AdminUsers.create(user)
-            // iniciando a sessão
-            req.session.userid = createdUser.id
-            req.session.save(() => {
-                res.redirect('/')
-            })
-        } catch (err) { console.log(err) }
-    }
-
     static async logout(req, res) {
         req.session.destroy();
         res.redirect('/loginUser');

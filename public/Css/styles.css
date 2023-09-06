@@ -2,13 +2,15 @@
   font-family: Helvetica, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #222;
-  color: #fff;
+  background-color: #66CDAA;
+  color: #000;
 }
 
 /* NAVBAR */
+
+
 #logo img {
-  height: 40px;
+  height: 50px;
 }
 
 #navbar {
@@ -17,9 +19,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #222;
-  color: #fff;
-  border-bottom: 1px solid #f6982d;
+  color: #000;
+  border-bottom: 2px solid #000;
+  background-color: #2E8B57;
 }
 
 #navbar ul {
@@ -28,19 +30,21 @@
 }
 
 #navbar ul li {
-  border-left: 1px solid #f6982d;
+  border-left: 2px solid #000;
   padding: 0.8em;
+  background-color: #2E8B57;
+  font-size: 18px;
 }
 
 #navbar ul li a {
   text-decoration: none;
-  color: #fff;
+  color: #000;
   transition: 0.5s;
   font-weight: bold;
 }
 
 #navbar ul li a:hover {
-  color: #f6982d;
+  color: #fff;
 }
 
 /* CONTAINER */
@@ -48,7 +52,7 @@
   padding: 1em;
   color: #004085;
   background-color: #cce5ff;
-  border: 1px soli d#b8daff;
+  border: 2px soli d#b8daff;
   border-radius: 5px;
   text-align: center;
   margin: 0 auto 2em;
@@ -65,21 +69,28 @@
   width: 70%;
   margin: 0 auto;
   text-align: center;
-  border: 1px solid #f6982d;
+  border: 2px solid #000;
 }
 
 .monthYear {
-  border-bottom: 1px solid #f6982d;
+  border-bottom: 2px solid #000;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px;
+  background-color: #2E8B57;
+  color: #fff;
+}
+
+.monthYear i, a, h1, img{
+  background-color: #2E8B57;
 }
 
 .monthYear i {
-  color: #f6982d;
+  color: #000;
   font-size: 30px;
   transition: all 0.5s ease-in-out;
+  
 }
 
 .monthYear i:hover {
@@ -94,7 +105,8 @@
 
 .calendar-table .daysWeek th {
   font-weight: bold;
-  border-bottom: 1px solid #f6982d;
+  border-bottom: 2px solid #000;
+  font-size: 18px;
 }
 
 .calendar-table th,
@@ -102,7 +114,7 @@
   padding: 10px;
   font-size: 16px;
   font-weight: normal;
-  color: #fff;
+  color: #000;
   font-size: 20px;
   transition: all 0.5s ease-in-out;
 }
@@ -116,9 +128,9 @@
 }
 
 .calendar-table td:not(.empty) {
-  color: #fff;
+  color: #000;
   opacity: 0.5;
-  border: 1px solid #f6982d;
+  border: 1px solid #000;
   height: 40px;
   width: 40px;
   transition: all 0.5s ease-in-out;
@@ -131,42 +143,42 @@
 
 .calendar-table .nextDays:not(.empty) a {
   transition: all 0.5s ease-in-out;
+  background-color: #66CDAA;
 }
 
 .calendar-table .nextDays:not(.empty):hover {
   cursor: pointer;
-  background-color: #cce5ff;
-  color: #000;
+  background-color: #000;
+  color: #2E8B57;
 }
 
 .calendar-table .nextDays:not(.empty):hover a {
   cursor: pointer;
-  background-color: #cce5ff;
-  color: #000;
+  background-color: #000;
+  color: #2E8B57;
 }
 
 .calendar-table .today:not(.empty) {
-  background-color: #f6982d;
+  background-color: #2E8B57;
   color: #000;
   opacity: 1;
 }
 
 .calendar-table .today:not(.empty) a {
-  background-color: #f6982d;
+  background-color: #2E8B57;
   color: #000;
   transition: all 0.5s ease-in-out;
 }
 
 .calendar-table .today:not(.empty):hover {
   cursor: pointer;
-  background-color: #cce5ff;
-  color: #000;
+  background-color: #000;
 }
 
 .calendar-table .today:not(.empty):hover a {
   cursor: pointer;
-  background-color: #cce5ff;
-  color: #000;
+  background-color: #000;
+  color: #2E8B57;
 }
 
 .calendar:not(:first-child) {
@@ -181,7 +193,6 @@
   display: none;
 }
 
-
 /* LOGIN E REGISTER */
 .auth-container {
   max-width: 450px;
@@ -192,14 +203,19 @@
 
 .auth-container h2 {
   margin-bottom: 1em;
-  color: #fff;
-  border-left: 4px solid #f6982d;
+  color: #000;
+  border-left: 4px solid #000;
   padding: 0.3em;
   width: 100%;
 }
 
+.auth-container form p, a{
+  background-color: transparent;
+}
+
 .auth-container a {
-  color: #f6982d;
+  color: #F0E68C;
+  background-color: #66CDAA;
 }
 
 .form-control {
@@ -217,14 +233,16 @@
 .form-control textarea {
   padding: 7px;
   border-radius: 3px;
-  border: 1px solid #f6982d;
+  border: 1px solid #000;
+  background-color: #222;
+  color: #2E8B57;
 }
 
 form input[type='submit'],
 .btn {
-  background-color: transparent;
-  color: #f6982d;
-  border: 2px solid #f6982d;
+  background-color: #2E8B57;
+  color: #000;
+  border: 2px solid #000;
   padding: 0.5em 1.3em;
   margin-bottom: 1em;
   font-size: 1em;
@@ -237,8 +255,8 @@ form input[type='submit'],
 
 form input[type='submit']:hover,
 .btn:hover {
-  background-color: #f6982d;
-  color: #fff;
+  background-color: #000;
+  color: #2E8B57;
 }
 
 /* REQUEST */
@@ -249,7 +267,7 @@ form input[type='submit']:hover,
 }
 
 .dashboard-request h1 {
-  color: #f6982d;
+  color: #000;
 }
 
 .availableHours {
@@ -257,7 +275,7 @@ form input[type='submit']:hover,
 }
 
 .availableHours .userName {
-  color: #f6982d;
+  color: #000;
 }
 
 .availableHours ul {
@@ -295,7 +313,7 @@ form input[type='submit']:hover,
 .availableHours li {
   padding: 15px;
   font-size: 20px;
-  border-bottom: solid 1px #f6982d;
+  border-bottom: solid 2px #000;
 }
 
 .availableHours ul img {
@@ -304,7 +322,7 @@ form input[type='submit']:hover,
 }
 
 .availableHours .available-time {
-  border: solid 1px #222;
+  border: solid 2px #222;
   font-size: 20px;
   padding: 20px;
   background-color: rgba(0, 128, 0, 0.8);
@@ -315,7 +333,7 @@ form input[type='submit']:hover,
 }
 
 .availableHours .unavailable-time {
-  border: solid 1px #222;
+  border: solid 2px #222;
   font-size: 20px;
   padding: 20px;
   background-color: rgba(255, 0, 0, 0.8);
@@ -358,18 +376,18 @@ form input[type='submit']:hover,
 .requestHour .row {
   display: flex;
   justify-content: space-between;
-  border-bottom: solid 1px #f6982d;
+  border-bottom: solid 2px #000;
   padding: 10px 0;
 }
 
 .requestHour h3 {
   padding-top: 20px;
   margin-right: 25px;
-  color: #f6982d;
+  color: #000;
 }
 
 .requestHour .res {
-  color: #fff;
+  color: #000;
 }
 
 .requestHour .selectPet {
@@ -377,12 +395,12 @@ form input[type='submit']:hover,
   align-items: center;
   justify-content: space-between;
   padding: 20px 0;
-  border-bottom: solid 1px #f6982d;
+  border-bottom: solid 1px #000;
 }
 
 .requestHour .selectPet select {
-  color: #fff;
-  border: solid 1px #f6982d;
+  color: #000;
+  border: solid 1px #000;
   text-align: center;
   font-size: 16px;
   padding: 10px 10px;
@@ -401,8 +419,9 @@ form input[type='submit']:hover,
 }
 
 .register-pet h1 {
-  border-left: 4px solid #f6982d;
+  border-left: 4px solid #000;
   padding: 10px;
+  background-color: #66CDAA;
 }
 
 .dashboard ul {
@@ -417,19 +436,21 @@ form input[type='submit']:hover,
 
 
 .pet-container {
-  border: 1px solid #f6982d;
+  border: 1px solid #000;
   min-width: 250px;
   padding: 1em;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: #2E8B57;
 }
 
 .pet-container h3 {
   font-size: 28px;
   padding: 15px 0;
-  color: #f6982d;
+  color: #000;
+  background-color: #2E8B57;
 }
 
 .pet-container p {
@@ -441,12 +462,13 @@ form input[type='submit']:hover,
   font-size: 18px;
   text-decoration: none;
   padding-bottom: 15px;
-  color: #f6982d;
+  color: #F0E68C;
+  font-weight: 900;
 }
 
 .dashboard .label {
   font-weight: bold;
-  color: #f6982d;
+  color: #000;
   margin-right: 2em;
 }
 
@@ -455,22 +477,22 @@ form input[type='submit']:hover,
 }
 
 .dashboard .actions .btn {
-  color: #fff;
-  border-color: #fff;
+  color: #000;
+  border-color: #000;
   margin: 0 0.5em;
 }
 
 /* CREATE / EDIT FORM */
 .tought-form-container a {
-  color: #f6982d;
+  color: #000;
 }
 
 .tought-form-container a:hover {
-  color: #fff;
+  color: #000;
 }
 
 .tought-form-container h1 {
-  border-left: 4px solid #f6982d;
+  border-left: 4px solid #000;
   padding: 10px;
   margin-top: 1em;
 }
@@ -485,17 +507,20 @@ form input[type='submit']:hover,
 .identification {
   display: flex;
   align-items: center;
+  /* border-bottom: 2px solid #000; */
+  margin-bottom: 20px;
 }
 
 .identification h1 {
-  color: #f6982d;
+  color: #000;
   padding-right: 20px;
   margin-bottom: 10px;
+  background-color: #66CDAA;
 }
 
 
 .identification .petRecord {
-  color: #fff;
+  color: #000;
 }
 
 .form-control .nextAppointment {
@@ -504,7 +529,7 @@ form input[type='submit']:hover,
 }
 
 .form-control .nextAppointment select {
-  border: 1px solid #f6982d;
+  border: 2px solid #000;
   width: 30%;
   height: 30px;
   font-size: 16px;
@@ -515,7 +540,7 @@ form input[type='submit']:hover,
 }
 
 .dashboard-direction li .liDirection {
-  border-bottom: 1px solid #f6982d;
+  border-bottom: 2px solid #000;
 }
 
 .dashboard-direction li {
@@ -525,12 +550,15 @@ form input[type='submit']:hover,
   list-style: none;
   padding: 10px;
 }
-
+.dashboard-direction li h1{
+  background-color: #66CDAA;
+} 
 .dashboard-direction li a {
   text-decoration: none;
   font-size: 22px;
-  color: #f6982d;
+  color: #F0E68C;
   font-weight: 700;
+  background-color: #66CDAA;
 }
 
 .dashboard-direction .vtRecord {
@@ -543,11 +571,11 @@ form input[type='submit']:hover,
 }
 
 .dashboard-direction .vtRecord .row .res {
-  color: #fff;
+  color: #000;
 }
 
 .dashboard-direction .vtRecord .row h2 {
-  color: #f6982d;
+  color: #000;
   padding-left: 20px;
   margin-bottom: 20px;
 }
@@ -565,7 +593,8 @@ form input[type='submit']:hover,
 }
 
 .adminQueriesTitle h1 {
-  color: #f6982d;
+  color: #000;
+  background-color: #66CDAA;
 }
 
 .allqueries ul {
@@ -577,15 +606,16 @@ form input[type='submit']:hover,
   display: flex;
   text-align: center;
   flex-direction: column;
-  border: 1px solid #f6982d;
+  border: 1px solid #000;
   margin-bottom: 20px;
 }
 
 .allqueries .queries h2 {
   padding: 20px 0;
-  color: #f6982d;
-  border-bottom: 1px solid #f6982d;
+  color: #000;
+  border-bottom: 2px solid #000;
   margin-bottom: 15px;
+  background-color: #2E8B57;
 }
 
 .allqueries .queries .queriesHours {
@@ -598,7 +628,7 @@ form input[type='submit']:hover,
 
 .allqueries .queries .queriesHours a {
   text-decoration: none;
-  color: #f6982d;
+  color: #000;
   margin-bottom: 15px;
 }
 
@@ -616,7 +646,7 @@ form input[type='submit']:hover,
 }
 
 .auth-container .row h3 {
-  color: #f6982d;
+  color: #000;
 }
 
 .allqueries .queries .queriesHours .hourQuery{
@@ -631,7 +661,7 @@ form input[type='submit']:hover,
 }
 
 .allqueries .queries .queriesHours .userQuery .res{
-  color: #f6982d;
+  color: #000;
   margin-right: 10px;
 }
 
@@ -643,13 +673,18 @@ form input[type='submit']:hover,
 }
 
 .allqueries .queries .queriesHours .petNameQuery .res{
-  color: #f6982d;
+  color: #000;
   margin-right: 10px;
 }
 
 .allqueries .queries .queriesHours .toFillIn{
   width: 30%;
   margin-bottom: 15px;
+}
+
+.allqueries .queries .queriesHours .toFillIn a{
+  background-color: #66CDAA;
+  color: #F0E68C;
 }
 
 /* ADMIN ALL USERS */
@@ -669,7 +704,8 @@ form input[type='submit']:hover,
 
 .dashboard-allUsers .search .searchText{
   padding: 10px;
-  border: 1px solid #f6982d;
+  border: 2px solid #000;
+  background-color: #363636;
   margin-right: 10px;
   width: 400px;
   margin-bottom: 15px;
@@ -684,32 +720,60 @@ form input[type='submit']:hover,
 }
 
 .dashboard-allUsers h1 {
-  color: #f6982d;
+  color: #000;
   padding: 10px;
-  border-left: 4px solid #f6982d;
+  border-left: 4px solid #000;
   margin-bottom: 20px;
+  background-color: #66CDAA;
 }
 
 .dashboard-allUsers .user {
-  border: 1px solid #f6982d;
+  border: 2px solid #000;
   margin-bottom: 20px;
   padding: 10px;
+  background-color: #2E8B57;
 }
 
 .dashboard-allUsers .user .name{
   display: flex;
   align-items: center;
+  background-color: #2E8B57;
+}
+
+.dashboard-allUsers .user .name h2{
+  background-color: #2E8B57;
 }
 
 .dashboard-allUsers .user .name .res{
-  color: #fff;
   margin-left: 15px;
+  background-color: #2E8B57;
 }
 
 .dashboard-allUsers .user ul li h3 {
   padding-left: 10px;
   margin: 10px 0;
-  color: #f6982d;
+  color: #000;
+  background-color: #2E8B57;
+}
+
+.dashboard-allUsers ul{
+  background-color: #2E8B57;
+}
+
+.dashboard-allUsers ul li {
+  background-color: #2E8B57;
+}
+
+.dashboard-allUsers ul .vtRecord {
+  background-color: #2E8B57;
+}
+
+.dashboard-allUsers ul .vtRecord li{
+  background-color: #2E8B57;
+}
+
+.dashboard-allUsers ul .vtRecord li p,a{
+  background-color: #2E8B57;
 }
 
 .dashboard-allUsers .user ul .vtRecord li {
@@ -724,7 +788,7 @@ form input[type='submit']:hover,
 
 .dashboard-allUsers .user ul .vtRecord li a {
   text-decoration: none;
-  color: #f6982d;
+  color: #000;
   padding-right: 20px;
 }
 
@@ -734,6 +798,11 @@ form input[type='submit']:hover,
   justify-content: space-between;
   padding: 10px;
   margin-bottom: 10px;
+  background-color: #2E8B57;
+}
+
+.dashboard-allUsers .user .title-user svg{
+  background-color: #2E8B57;
 }
 
 .title-user {
@@ -753,7 +822,7 @@ form input[type='submit']:hover,
 
 .vtRecords {
   display: none;
-  border-top: 1px solid #f6982d;
+  border-top: 2px solid #000;
 }
 
 .vtRecords.active {
@@ -762,7 +831,7 @@ form input[type='submit']:hover,
 
 
 .dashboard-allUsers .user .title-user h2 {
-  color: #f6982d;
+  color: #000;
 }
 
 .dashboard-allUsers .user .title-user svg:hover {
@@ -786,7 +855,9 @@ form input[type='submit']:hover,
     height: 25px;
     width: 25px;
   }
-
+  #navbar ul li{
+    font-size: 16px;
+  }
   .calendar-table .daysWeek th{
     font-size: 12px;
   }
@@ -814,8 +885,15 @@ form input[type='submit']:hover,
 
   /* REQUESTS */
 
+
+
+
   .availableHours ul .hours .square {
     padding: 5px;
+  }
+
+  .availableHours ul .hours .markOff img{
+    background-color: #66CDAA;
   }
 
   .availableHours ul .hours .markOff label{
@@ -849,6 +927,7 @@ form input[type='submit']:hover,
   font-size: 24px;
   text-align: center;
   margin-bottom: 10px;
+  background-color: #66CDAA;
 }
 
 .dashboard-request .form-control h1{
@@ -911,7 +990,7 @@ form input[type='submit']:hover,
 
 .allqueries .queries .queriesHours{
   padding: 10px 10px;
-  border-bottom: 1px solid #f6982d;
+  border-bottom: 2px solid #000;
 }
 
 .allqueries .queries .queriesHours .userQuery{
@@ -934,21 +1013,25 @@ form input[type='submit']:hover,
 }
 
 /* FOOTER */
+
+footer, span,p {
+  background-color: #2E8B57;
+}
 footer {
-  height: 100px;
+  height: 15.4vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-top: 1px solid #f6982d;
-  background-color: #222;
+  border-top: 2px solid #000;
 }
 
 footer span {
   font-weight: bold;
-  color: #f6982d;
+  color: #000;
 }
 
 footer img {
-  padding: 15px;
+  margin-bottom: 10px;
+  width: 60px;
 }

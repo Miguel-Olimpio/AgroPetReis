@@ -6,8 +6,6 @@ const authRouter = express.Router()
 // Adm
 authRouter.get('/loginAdm', AuthController.loginAdmin )
 authRouter.post('/loginAdm', AuthController.loginAdminPost )
-authRouter.get('/registerAdmin', AuthController.registerAdmin )
-authRouter.post('/registerAdmin', AuthController.registerAdminPost)
 
 // User
 authRouter.get('/loginUser', AuthController.loginUser )

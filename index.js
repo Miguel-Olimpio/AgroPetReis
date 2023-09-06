@@ -85,8 +85,8 @@ app.use(
 app.use(flash())
 
 // public path
-// app.use(express.static('public'))
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public'))
+// app.use(express.static(path.join(__dirname, 'public')));
 
 // set session to res
 app.use((req,res,next)=>{
@@ -119,10 +119,10 @@ app.use('/', petsRouter)
 db
 // .sync({force:true})
 .sync()
-.then(()=>{
-    app.listen(process.env.PORT)
-}).catch((err)=> console.log(err))
-
 // .then(()=>{
-//     app.listen(3000)
+//     app.listen(process.env.PORT)
 // }).catch((err)=> console.log(err))
+
+.then(()=>{
+    app.listen(3000)
+}).catch((err)=> console.log(err))
