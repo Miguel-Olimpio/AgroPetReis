@@ -2,11 +2,14 @@
     <div class="adminQueriesTitle">
         <h1>Consultas: </h1>
     </div>
+    {{#each resumeAdmInfo}}
+    <input type="hidden" value="{{id}}">
+    {{/each}}
     <div class="allqueries">
         <ul>
             {{#each groupedSchedules}}
             <li class="queries">
-                <h2>{{formatDate @key}}</h2>
+                <h2>{{@key}}</h2>
                 <ul>
                     {{#each this}}
                     <li class="queriesHours">
@@ -22,7 +25,11 @@
                             <h3>{{petName}}</h3>
                         </div>
                         <div class="toFillIn">
+                            {{#if (checkIfAdm userName)}}
+                            <h3>Horário indisponível</h3>
+                            {{else}}
                             <a href="/registerVeterinaryRecord/{{id}}">Preencher Ficha Veterinaria</a>
+                            {{/if}}
                         </div>
                     </li>
                     {{/each}}
@@ -31,4 +38,5 @@
             {{/each}}
         </ul>
     </div>
+    <a href="/loading" class="btn"> Clique para acessar o whatsApp</a>
 </div>

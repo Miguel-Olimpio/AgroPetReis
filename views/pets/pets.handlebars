@@ -1,4 +1,9 @@
+
 <div class="dashboard">
+    <div class="changeRegistration">
+        <h1>Alterar dados do usuario:</h1>
+        <a href="/editUser" class="btn">Alterar dados</a>
+    </div>
     <div class="register-pet">
         <h1>Seus Pets</h1>
         <a href="/registerPet" class="btn">Cadastrar Pet</a>
@@ -8,8 +13,8 @@
         <li>
             <div class="pet-container">
                 <h3>{{PetName}}</h3>
-                <p>Especie: {{species}} </p>
-                <p>Raça: {{race}} </p>
+                <p><strong>Especie:</strong> {{species}} </p>
+                <p><strong>Raça:</strong> {{race}} </p>
                 <a href="/veterinaryRecord/{{id}}">Fichas Veterinária...</a>
             </div>
         </li>

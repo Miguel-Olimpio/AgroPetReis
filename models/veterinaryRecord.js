@@ -1,7 +1,7 @@
-const { DataTypes } = require('sequelize');
-const { db } = require('../db/conn.js');
-const { Pet } = require('./Pets.js');
-
+import { DataTypes } from 'sequelize';
+import { db } from '../db/conn.js';
+import { Pet } from './Pets.js';
+import { User } from './user.js';
 
 const VeterinaryRecord = db.define('VeterinaryRecord', {
   date: {
@@ -20,13 +20,13 @@ const VeterinaryRecord = db.define('VeterinaryRecord', {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  nextAppointment:{
+  nextAppointment: {
     type: DataTypes.DATE,
-    allowNull: false
+    allowNull: false,
   }
 });
 
-VeterinaryRecord.belongsTo(Pet)
-Pet.hasMany(VeterinaryRecord)
+VeterinaryRecord.belongsTo(Pet);
+Pet.hasMany(VeterinaryRecord);
 
-module.exports = { VeterinaryRecord }
+export { VeterinaryRecord };

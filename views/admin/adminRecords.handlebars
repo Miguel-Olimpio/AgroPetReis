@@ -27,13 +27,16 @@
         {{#if Pets.length}}
         <ul class="vtRecords">
           {{#each Pets}}
+          
           <li>
             <h3> {{dataValues.PetName}}</h3>
             <ul>
+              
               {{#each dataValues.VeterinaryRecords}}
+              
               <div class="vtRecord">
                 <li>
-                  <p>Data da consulta referente ficha:</p>
+                  <p>Data da consulta referente ao dia:</p>
                   <a href="/editVeterinaryRecord/{{dataValues.id}}">{{formatDate dataValues.date}}</a>
                 </li>
               </div>

@@ -1,7 +1,7 @@
-const { DataTypes } = require('sequelize');
-const { db } = require('../db/conn.js');
-const { User } = require('./user.js');
-const { AdminUsers } = require('./admin.js');
+import { DataTypes } from 'sequelize';
+import { db } from '../db/conn.js';
+import { User } from './user.js';
+import { AdminUsers } from './admin.js';
 
 const Scheduling = db.define('Scheduling', {
   date: {
@@ -18,11 +18,11 @@ const Scheduling = db.define('Scheduling', {
   }
 });
 
+Scheduling.belongsTo(User);
+User.hasMany(Scheduling);
 
-// Scheduling.belongsTo(AdminUsers)
-// AdminUsers.hasMany(Scheduling)
+// Certifique-se de que './admin.js' exporta AdminUsers diretamente
+// Scheduling.belongsTo(AdminUsers);
+// AdminUsers.hasMany(Scheduling);
 
-Scheduling.belongsTo(User)
-User.hasMany(Scheduling)
-
-module.exports = { Scheduling };
+export { Scheduling };

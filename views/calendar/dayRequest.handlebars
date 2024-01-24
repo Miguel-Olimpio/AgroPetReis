@@ -1,5 +1,7 @@
 <div class="dashboard-request">
-    <h1>Agendamentos para - {{ day }}/{{ realMonth }}/{{ year }}</h1>
+    <div class="title">
+        <h1>Agendamentos para - {{ day }}/{{ month }}/{{ year }}</h1>
+    </div>
     <form class="form-control" action="/{{year}}/{{month}}/{{day}}" method="POST">
 
         <input type="hidden" name="month" value="{{month}}">

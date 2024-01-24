@@ -1,16 +1,15 @@
 <div class="auth-container">
-    <h2>Entrar</h2>
-    <form action="/loginUser" method="POST">
+    <h2>Alterar dados</h2>
+    <form action="/editUser" method="POST">
         <div class="form-control">
-            <label for="name">Digite seu Nome e Sobrenome:</label>
-            <input type="name" name="name" id="nameInput" placeholder="Digite o seu nome e sobrenome...">
+            <label for="name">Nome atual : {{name}}:</label>
+            <input type="name" name="name"  id="nameInput" placeholder="Digite o nome que deseja utilizar " required>
         </div>
         <div class="form-control">
-            <label for="telephone">WhatsApp:</label>
-            <input class="teste22" type="tel" name="telephone" placeholder="Digite WhatsApp e ddd sem espaço... Ex:32988241029">
+            <label for="telephone">WhatsApp atual : {{telephone}}</label>
+            <input type="tel" name="telephone" pattern="[0-9]{11,}" placeholder="Digite o telefone para o qual deseja alterar Ex:32932811080... " required>
         </div>
-        <input type="submit" value="Entrar">
-        <p>Não tem conta? <a href="/registerUser">Clique aqui</a></p>
+        <input type="submit" value="Atualizar">
     </form>
 </div>
 

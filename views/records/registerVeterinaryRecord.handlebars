@@ -1,5 +1,5 @@
 <div class="auth-container">
-    <h2>Registrar Registro Veterinário:</h2>
+    <h2>Registrar Ficha Veterinário:</h2>
     <div class="row">
         <h3>{{petName}} </h3>
         <h3>{{formatDate date}}</h3>
@@ -22,8 +22,12 @@
             <label for="revenue">Receita:</label>
             <textarea type="text" name="revenue" rows="5" placeholder="Digite a receita" required></textarea>
         </div>
-        <div class="form-control">
-            <label for="nextAppointment">Próximo agendamento:</label>
+        <div class="vaccine">
+            <label for="vaccine">Vacina:</label>
+            <input type="checkbox" name="vaccine" id="vaccineCheckbox">
+        </div>
+        <div class="form-control" id="nextAppointmentSection" style="display: none;">
+            <label for="nextAppointment">Próxima vacina:</label>
             <div class="nextAppointment">
                 <select name="day" required>
                     {{#each days}}
@@ -41,9 +45,23 @@
                     {{/each}}
                 </select>
             </div>
-
         </div>
-
-        <input type="submit" value="Registrar">
-    </form>
+        
+<input type="submit" value="Registrar">
 </div>
+</form>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#vaccineCheckbox').change(function () {
+            if ($(this).is(':checked')) {
+                $('#nextAppointmentSection').show();
+            } else {
+                $('#nextAppointmentSection').hide();
+            }
+        });
+    });
+</script>

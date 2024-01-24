@@ -6,40 +6,36 @@
   </div>
   <table class="calendar-table">
     <tr class="daysWeek">
-      <th>Dom</th>
-      <th>Seg</th>
+      <th class="lastDay">Dom</th>
+      <th class="lastDay">Seg</th>
       <th>Ter</th>
       <th>Qua</th>
       <th>Qui</th>
       <th>Sex</th>
       <th>Sab</th>
     </tr>
-{{#each calendarMatrix}}
-  <tr>
-    {{#each this}}
-      {{#if this}}
-        {{#isEqual this.month ../../currentMonth}}    
-          {{#isGreaterOrEqual this.day ../../currentDay}}
-            {{#isEqual this.day ../../currentDay}}
-              <td class="today"><a href="/{{ this.year }}/{{ this.month }}/{{ this.day }}">{{this.day}}</a></td>
+    {{#each calendarMatrix}}
+      <tr>
+        {{#each this}}
+          {{#if this}}     
+            {{#if (ifThreeConditions (ifAnd (isLess2 this.day ../../currentDay) (lessOrEqual ../../displayedMonth ../../correctMonth)) (isLess2 ../../displayedMonth ../../correctMonth) (ifAnd (verifyWeekend this.day ../../sundayOrMonday) (ifNotEqual this.day ../../currentDay)))}}
+              <td class="lastDays">{{this.day}}</td>
             {{else}}
-              <td class="nextDays"><a href="/{{ this.year }}/{{ this.month }}/{{ this.day }}">{{this.day}}</a></td>
-            {{/isEqual}}
+              {{#if (ifAnd (isEqual2 ../../displayedMonth ../../correctMonth) (isEqual2 this.day ../../currentDay))}}
+                {{#if (verifyWeekend this.day ../../sundayOrMonday)}}
+                  <td class="specialToday">{{this.day}}</td>
+                {{else}}
+                  <td class="today"><a href="/{{ this.year }}/{{ this.month }}/{{ this.day }}">{{ this.day }}</a></td>
+                {{/if}}                
+              {{else}}
+                <td class="nextDays"><a href="/{{ this.year }}/{{ this.month }}/{{ this.day }}">{{ this.day }}</a></td>
+              {{/if}}
+            {{/if}}
           {{else}}
-            <td class="lastDay">{{this.day}}</td>
-          {{/isGreaterOrEqual}}
-        {{else}}
-          {{#isBigger this.month ../../currentMonth}}
-            <td class="nextDays"><a href="/{{ this.year }}/{{ this.month }}/{{ this.day }}">{{this.day}}</a></td>
-          {{else}}
-            <td class="lastDay">{{this.day}}</td>
-          {{/isBigger}}
-        {{/isEqual}}
-      {{else}}
-        <td class="empty"></td>
-      {{/if}}
+            <td class="empty"></td>
+          {{/if}}
+        {{/each}}
+      </tr>
     {{/each}}
-  </tr>
-{{/each}}
   </table>
 </div>

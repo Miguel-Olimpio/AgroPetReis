@@ -1,16 +1,15 @@
-const { DataTypes } = require('sequelize');
-const { db } = require('../db/conn.js');
-
+import { DataTypes } from 'sequelize';
+import { db } from '../db/conn.js';
 
 const AdminUsers = db.define('AdmUsers', {
-    name: {
-        type: DataTypes.STRING,
-        require:true
-    },
-    password: {
-        type: DataTypes.STRING,
-        require:true
-    },
-})
+  name: {
+    type: DataTypes.STRING,
+    require: true
+  },
+  password: {
+    type: DataTypes.STRING,
+    require: true
+  },
+});
 
-module.exports = { AdminUsers }
+export { AdminUsers };

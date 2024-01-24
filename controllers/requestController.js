@@ -1,16 +1,15 @@
-const { User } = require('../models/user.js');
-const { Scheduling } = require('../models/request.js');
-const { Pet } = require('../models/Pets.js');
-const { Op } = require('sequelize');
-const { AdminUsers } = require('../models/admin.js');
-
+import { User } from '../models/user.js';
+import { Scheduling } from '../models/request.js';
+import { Pet } from '../models/Pets.js';
+import { Op } from 'sequelize';
+import { AdminUsers } from '../models/admin.js';
 
 class RequestController {
 
     static async getDayRequest(req, res) {
         const { year, month, day } = req.params;
         const userId = req.session.userid;
-        const realMonth = parseInt(month) + 1
+
         // Obtém os horários fixos disponíveis
         const availableHours = [
             "10:00", "10:30", "11:00", "11:30",
@@ -21,7 +20,6 @@ class RequestController {
         // Obtém os horários já agendados para a data específica
         const scheduledAppointments = await Scheduling.findAll({
             where: {
-                // date:date
                 date: {
                     [Op.gte]: new Date(`${year}-${month}-${day}`),
                     [Op.lt]: new Date(`${year}-${month}-${day} 23:59:59`)
@@ -47,6 +45,7 @@ class RequestController {
                 verifiedUser: isVerifiedUser,
             };
         });
+
         // Obtém a lista de Pets do usuário logado
         const user = await User.findOne({
             where: { id: userId },
@@ -69,7 +68,6 @@ class RequestController {
         // Renderiza a página com as informações necessárias
         res.render('calendar/dayRequest', {
             messages: req.flash(),
-            realMonth,
             year,
             month,
             day,
@@ -86,7 +84,7 @@ class RequestController {
     static async requestHour(req, res) {
         const { year, month, day, hour } = req.params;
         const userId = req.session.userid;
-        const realMonth = parseInt(month) + 1
+        const realMonth = parseInt(month);
 
         // Obtem o id da requisição caso ele exista
         let requestId;
@@ -137,13 +135,20 @@ class RequestController {
                     plain: true
                 });
 
-                userName = scheduledUser.name;
-                pets = scheduledUser.Pets.map(pet => pet.dataValues);
+                if (scheduledUser && scheduledUser.name) {
+                    userName = scheduledUser.name;
+                } else {
+                    userName = 'admin';
+                }
+                if (scheduledUser && scheduledUser.Pets) {
+                    pets = scheduledUser.Pets.map(pet => pet.dataValues);
+                } else {
+                    pets = 'admin';
+                }
             } else {
                 userName = adminUser.name;
             }
         }
-
 
         res.render('calendar/requestHour', {
             year,
@@ -162,6 +167,7 @@ class RequestController {
     static async requestPost(req, res) {
         const { pet, year, month, day, hour } = req.body;
         const userId = req.session.userid;
+
         const normalizedDate = `${year}-${month}-${day}`;
         const normalizedHour = hour;
         try {
@@ -179,22 +185,21 @@ class RequestController {
                 req.flash('message', 'Este pet já possui um agendamento para este dia. Não é possível agendar mais de uma consulta para o mesmo pet no mesmo dia.');
                 return req.session.save(() => {
                     res.redirect(`/${year}/${month}/${day}`);
-                  })
+                })
             }
-            const AdmUserId = 1
+
             // Caso não exista um agendamento para o mesmo pet na data especificada, crie o novo agendamento normalmente.
             await Scheduling.create({
                 date: normalizedDate,
                 pet: pet,
                 hour: normalizedHour,
                 UserId: userId,
-                AdmUserId: AdmUserId
             });
 
             req.flash('message', 'Você Agendou seu horário com sucesso');
             req.session.save(() => {
                 res.redirect(`/${year}/${month}/${day}`);
-              })
+            })
         } catch (error) {
             console.log(error);
         }
@@ -205,13 +210,17 @@ class RequestController {
         const UserId = req.session.userid
 
         try {
-            await Scheduling.destroy({ where: { id: requestId, UserId: UserId, hour: hour } })
-            req.flash('message', 'Você cancelou seu agendamento com sucesso');
-            req.session.save(() => {
-                res.redirect(`/${year}/${month}/${day}`);
-              })
+            if (UserId === 1) {
+                await Scheduling.destroy({ where: { id: requestId, hour: hour} });
+            } else {
+                await Scheduling.destroy({ where: { id: requestId, UserId: UserId, hour: hour } })
+                req.flash('message', 'Você cancelou seu agendamento com sucesso');
+                req.session.save(() => {
+                    res.redirect(`/${year}/${month}/${day}`);
+                })
+            }
         } catch (error) { console.log(error) }
     }
 }
 
-module.exports = { RequestController };
+export { RequestController };

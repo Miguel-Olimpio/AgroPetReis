@@ -11,24 +11,29 @@
 
 <body>
     <nav id="navbar">
-        <a href="/loginAdm" id="logo">
+        <a href="/loginAdm" class="imgLayout" id="logo">
             <img src="/img/vecteezy_happy-dog-an-illustration-of-a-cute-dog-playing-with-his_9551670.png" alt="Logo">
         </a>
-        <ul>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="ulLayout">
             {{#isLess session.userid 50}}
-            <li><a href="/calendar">Gerenciador</a></li>
-            <li><a href="/allChips">Pacientes</a></li>
-            <li><a href="/queries">Consultas</a></li>
-            <li><a href="/logout">Sair</a></li>
+            <li class="liLayout"><a href="/calendar">Gerenciador</a></li>
+            <li class="liLayout"><a href="/allChips">Pacientes</a></li>
+            <li class="liLayout"><a href="/queries">Consultas</a></li>
+            <li class="liLayout"><a href="/logout">Sair</a></li>
             {{else}}
             {{#if session.userid}}
-            <li><a href="/calendar">Calendario</a></li>
-            <li><a href="/pets">Pets</a></li>
-            <li><a href="/logout">Sair</a></li>
+            <li class="liLayout"><a href="/calendar">Calendario</a></li>
+            <li class="liLayout"><a href="/pets">Pets</a></li>
+            <li class="liLayout"><a href="/logout">Sair</a></li>
             {{else}}
-            <li><a href="/calendar">Calendario</a></li>            
-            <li><a href="/loginUser">Entrar</a></li>
-            <li><a href="/registerUser">Registrar</a></li>
+            <li class="liLayout"><a href="/calendar">Calendario</a></li>            
+            <li class="liLayout"><a href="/loginUser">Entrar</a></li>
+            <li class="liLayout"><a href="/registerUser">Registrar</a></li>
             {{/if}}
             {{/isLess}}
         </ul>
@@ -53,3 +58,15 @@
 </body>
 
 </html>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    const mobileMenu = document.getElementById('mobile-menu');
+    const navList = document.querySelector('#navbar ul');
+
+    mobileMenu.addEventListener('click', function () {
+        navList.classList.toggle('show');
+    });
+});
+
+</script>
