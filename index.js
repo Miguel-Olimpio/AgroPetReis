@@ -190,6 +190,6 @@ app.use('/', petsRouter);
 // db.sync({force: true})
 db.sync()
   .then(() => {
-    app.listen(443);
+    app.listen(3001);
   })
   .catch((err) => console.log(err));
