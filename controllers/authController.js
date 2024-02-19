@@ -105,9 +105,14 @@ class AuthController {
             return;
         }
 
-        // Começar com o id = 50
-        // const id = 50
+    // Caso nao queira iniciar com uma sql injection basta descomentar as duas linhas abaixo a primeira serve
+    // para começar com o id = 50 e a segunda serve para criar o admin que será necessário descomentar a função acima
+    // posteriormente basta registrar o primeiro usuario que será registrado o adm com as informações contidas na função
+    // que esta fora da classe AuthController, após ambos serem criados basta comentar novamente as 2 linhas abaixo e o id do obj.
 
+        // const id = 50
+        // criarAdmin()
+        
         const user = {
             name,
             petName,

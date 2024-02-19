@@ -1,30 +1,7 @@
 import { Sequelize } from 'sequelize';
 
-// const db = new Sequelize({
-//     dialect: 'mysql',
-//     host: process.env.DB_HOST,
-//     port: process.env.DB_PORT,
-//     database: process.env.DB_NAME,
-//     username: process.env.DB_USER,
-//     password: process.env.DB_PASSWORD,
-//     dialectOptions: {
-//         ssl: {
-//             rejectUnauthorized: false
-//         }
-//     }
-// });
-
-// try {
-//     await db.authenticate();
-//     console.log('Connected to railway database!');
-// } catch (err) {
-//     console.error('Unable to connect to the database:', err);
-// }
-
-// export { db };
-
-const db = new Sequelize('agropetvetreis', 'root', '', {
-    host: 'LocalHost',
+const db = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
+    host: process.env.DB_HOST,
     dialect: 'mysql'
 });
 
