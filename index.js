@@ -2,16 +2,9 @@ import express from 'express';
 import exphbs from 'express-handlebars';
 import session from 'express-session';
 import flash from 'connect-flash';
-import FileStore from 'session-file-store';
 import { db } from './db/conn.js';
 import moment from 'moment';
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
-
-// Obter o caminho do diretório atual do arquivo
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import SequelizeStore from 'connect-session-sequelize';
 
 // Models
 import { Scheduling } from './models/request.js';
@@ -19,6 +12,7 @@ import { User } from './models/user.js';
 import { AdminUsers } from './models/admin.js';
 import { Pet } from './models/Pets.js';
 import { VeterinaryRecord } from './models/veterinaryRecord.js';
+import { Session } from './models/sessions.js';
 
 // Import Routes
 import { calendarRouter } from './routes/calendarRoutes.js';
@@ -63,8 +57,6 @@ import {
 
 moment.locale('pt-br');
 
-const FileStoreSession = FileStore(session);
-
 const app = express();
 
 app.engine('handlebars', exphbs.engine());
@@ -75,56 +67,19 @@ app.use(express.urlencoded({
 }));
 app.use(express.json());
 
-const sessionsPath = path.join(__dirname, './sessions');
-
-function removeExpiredSessions() {
-  const now = new Date().getTime();
-  fs.readdir(sessionsPath, (err, files) => {
-    if (err) {
-      console.error('Erro ao listar diretório de sessões:', err);
-      return;
-    }
-
-    files.forEach((file) => {
-      const filePath = path.join(sessionsPath, file);
-
-      fs.stat(filePath, (err, stats) => {
-        if (err) {
-          console.error('Erro ao obter informações do arquivo:', err);
-          return;
-        }
-
-        if (stats.mtime.getTime() + 3600000 < now) {
-          fs.unlink(filePath, (err) => {
-            if (err) {
-              console.error('Erro ao excluir arquivo de sessão expirada:', err);
-            } else {
-              console.log('Sessão expirada removida:', file);
-            }
-          });
-        }
-      });
-    });
-  });
-}
-
-setInterval(removeExpiredSessions, 3600000);
+const SequelizeStoreSession = SequelizeStore(session.Store);
+const sessionStore = new SequelizeStoreSession({
+  db: db,
+});
 
 app.use(
   session({
-    name: 'session',
-    secret: 'nosso_secret',
+    secret: 'seu_segredo_aqui',
     resave: false,
     saveUninitialized: false,
-    store: new FileStoreSession({
-      logFn: function () {},
-      path: sessionsPath,
-    }),
+    store: sessionStore,
     cookie: {
       secure: false,
-      maxAge: 3600000,
-      expires: new Date(Date.now() + 3600000),
-      httpOnly: true,
     },
   })
 );
