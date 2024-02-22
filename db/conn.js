@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-dotenv.config({path: '../../etc/environment'});
+dotenv.config({path: '/etc/environment'});
 
 import { Sequelize } from 'sequelize';
 
