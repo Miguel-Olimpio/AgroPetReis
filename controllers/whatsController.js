@@ -72,9 +72,8 @@ class WhatsController {
 
         if (realVerificationDate === realDate) {
           try {
-
+            console.log(`-------------------------> chegou ate aqui <------------------------------`)
             await runPythonScript(caminhoPython, linkConfirmationWhats)
-
           } catch (e) {
             console.error(`--------------------------Erro ao chamar a função Python: ${e}------------------------`);
           }
