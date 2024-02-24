@@ -3,8 +3,8 @@ dotenv.config({path: '../../etc/environment'});
 
 import { Sequelize } from 'sequelize';
 
-const db = new Sequelize(process.env.DB_NAME, process.env.DB_USER,process.env.DB_PASSWORD, {
-    host: process.env.DB_HOST,
+const db = new Sequelize('agropetvetreis', 'agroPetAdmin','Nettao260695', {
+    host: 'agropetreis.c7i0ks280v4u.us-east-1.rds.amazonaws.com',
     dialect: 'mysql'
 });
 
