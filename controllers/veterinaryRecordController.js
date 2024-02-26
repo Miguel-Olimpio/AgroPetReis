@@ -100,7 +100,7 @@ class VeterinaryRecordController {
   static async registerVeterinaryRecordPost(req, res) {
     const { date, month, day, year, weight, report, revenue, PetId, petName } = req.body;
     const Month = parseInt(month, 10);
-    const realMonth = Month + 1;
+    const realMonth = Month;
     const nextAppointment = `${year}-${realMonth}-${day}`;
 
     try {
