@@ -795,6 +795,11 @@ form .download:hover{
 .dashboard-queries ul{
   display: flex;
   flex-direction: column;
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
 }
 
 .dashboard-queries ul li{
