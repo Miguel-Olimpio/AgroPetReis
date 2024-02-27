@@ -792,30 +792,14 @@ form .download:hover{
   width: 50%;
 }
 
-.dashboard-queries .loading{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin: 10px;
-}
-
-.dashboard-queries .sucesso {
+.dashboard-queries ul{
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20%;
 }
 
-.dashboard-queries .sucesso h1{
-  background-color: #66CDAA;
-  width: auto;
-
-}
-
-.dashboard-queries .loading input{
-  margin-top: 20px;
+.dashboard-queries ul li{
+  list-style: none;
+  font-size: 20px;
 }
 
 .dashboard-queries a{

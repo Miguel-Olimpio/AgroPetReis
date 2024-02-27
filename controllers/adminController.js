@@ -3,12 +3,9 @@ import moment from 'moment';
 import { Scheduling } from '../models/request.js';
 import { VeterinaryRecord } from '../models/veterinaryRecord.js';
 import { AdminUsers } from '../models/admin.js';
-import { WhatsController } from '../controllers/whatsController.js';
 import { User } from '../models/user.js';
 import { Pet } from '../models/Pets.js';
-
-const confirmDay = WhatsController.confirmDay;
-const verification = WhatsController.vaccineWarning
+import { formatarData, formatDate } from '../helpers/helpers.js';
 
 // Função para agrupar as requisições por data
 function groupSchedulesByDate(schedules) {
@@ -33,34 +30,50 @@ function groupSchedulesByDate(schedules) {
   return groupedSchedules;
 }
 
+// Função para verificar a data atual
+function realDateFun() {
+  let dataAtualMoment = moment();
+  return dataAtualMoment;
+}
+
+// Função para verificação de vacinas vencidas
+async function vaccineWarning() {
+  const veterinaryRecord = await VeterinaryRecord.findAll({});
+  const veterinaryRecordSize = veterinaryRecord.length;
+  const text = []
+
+  const realDate = formatarData(realDateFun());
+  let foundVaccine = false; // Variável para verificar se uma vacina foi encontrada
+
+  for (let i = 0; i < veterinaryRecordSize; i++) {
+    const verificationNextAppointment = veterinaryRecord[i].nextAppointment;
+    const nextAppointment = formatarData(verificationNextAppointment);
+    const petId = veterinaryRecord[i].PetId
+
+    if (realDate === nextAppointment) {
+      const pet = await Pet.findOne({ where: { id: petId } });
+      const user = await User.findOne({ where: { id: pet.UserId } });
+      const name = user.name; // Não precisa do await aqui
+      const petName = pet.PetName; // Não precisa do await aqui            
+      const message = `Hoje - ${realDate} venceu a vacina do pet ${petName} do usuário ${name}, abra a automação e faça o envio das mensagens de vencimento de vacina`;
+      text.push(message)
+      foundVaccine = true; // Indica que uma vacina foi encontrada
+    }
+  }
+
+  if (!foundVaccine) { // Se nenhuma vacina foi encontrada
+    const message = `Nenhum vencimento de vacina hoje - ${realDate}`
+    text.push(message)
+    return text;
+  }
+  return text
+}
+
 class AdminController {
 
-  static async whatsConfirmationDay(req, res) {
-    res.render('admin/loading');
-  }
-
-  static async success(req,res){
-    res.render('admin/success')
-  }
-
-  static async whatsVerificationVacinePost(req, res) {
-    try {
-      await verification();
-      res.redirect('/success');
-
-    } catch (e) {
-      console.log(`----------------------------ta aqui desgraça -> ${e}-------------------------------------`);
-    }
-  }
-
-  static async whatsConfirmationDayPost(req, res) {
-    try {
-      await confirmDay();
-      res.redirect('/success');
-
-    } catch (e) {
-      console.log(`----------------------------ta aqui desgraça -> ${e}-------------------------------------`);
-    }
+  static async vaccineResults(req, res) {
+    const results = await vaccineWarning()
+    res.render('admin/loading', {results} );
   }
 
   static async showQueries(req, res) {

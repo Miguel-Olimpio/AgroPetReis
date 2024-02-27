@@ -1,11 +1,11 @@
 <div class="dashboard-queries">
-    <form class="loading" action="/whatsconfirm" method="POST">
-        <h2>Clique aqui para realizar a confirmação com os clientes que irão se consultar hoje, Após clicar espere ate que o processo esteja concluido sem tocar no mouse</h1>
-        <input type="submit" value="Confirmação de consulta">
-    </form>
-
-    <form class="loading" action="/whatsverification" method="POST">
-        <h2>Clique aqui para verificar se venceu alguma vacina, Após clicar espere ate que o processo esteja concluido sem tocar no mouse</h1>
-        <input type="submit" value="Verificação do vencimento da vacina">
-    </form>
+    {{#if results.length}} <!-- Verifica se o array results tem algum elemento -->
+        <ul>
+            {{#each results}} <!-- Itera sobre cada elemento do array results -->
+                <li>{{this}}</li> <!-- Exibe o elemento atual do array -->
+            {{/each}}
+        </ul>
+    {{else}}
+        <p>Nenhum resultado encontrado.</p> <!-- Mensagem de fallback caso o array results esteja vazio -->
+    {{/if}}
 </div>

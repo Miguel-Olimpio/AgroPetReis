@@ -4,10 +4,7 @@ import { AdminController } from '../controllers/adminController.js';
 
 const adminRouter = express.Router();
 
-adminRouter.get('/loading', checkAuth, AdminController.whatsConfirmationDay);
-adminRouter.post('/whatsconfirm', checkAuth, AdminController.whatsConfirmationDayPost);
-adminRouter.post('/whatsverification', checkAuth, AdminController.whatsVerificationVacinePost);
-adminRouter.get('/success', checkAuth, AdminController.success);
+adminRouter.get('/loading', checkAuth, AdminController.vaccineResults);
 adminRouter.get('/queries', checkAuth, AdminController.showQueries);
 adminRouter.get('/allchips', checkAuth, AdminController.showRecords);
 adminRouter.post('/removeAdmin', checkAuth, AdminController.removeRequestAdmin);
