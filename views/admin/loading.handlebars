@@ -1,11 +1,7 @@
-<div class="dashboard-queries">
-    {{#if results.length}} <!-- Verifica se o array results tem algum elemento -->
-        <ul>
-            {{#each results}} <!-- Itera sobre cada elemento do array results -->
-                <li>{{this}}</li> <!-- Exibe o elemento atual do array -->
+<div class="dashboard-queries"> 
+        <ul class="resultado_vacina_ul">
+            {{#each results}} 
+                <li class="resultado_vacina_li">{{this}}</li>
             {{/each}}
         </ul>
-    {{else}}
-        <p>Nenhum resultado encontrado.</p> <!-- Mensagem de fallback caso o array results esteja vazio -->
-    {{/if}}
 </div>

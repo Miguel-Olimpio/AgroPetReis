@@ -792,7 +792,7 @@ form .download:hover{
   width: 50%;
 }
 
-.dashboard-queries ul{
+.dashboard-queries .resultado_vacina_ul {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -802,7 +802,7 @@ form .download:hover{
   align-items: center;
 }
 
-.dashboard-queries ul li{
+.dashboard-queries .resultado_vacina_ul .resultado_vacina_li{
   list-style: none;
   font-size: 20px;
 }
