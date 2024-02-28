@@ -79,7 +79,9 @@ app.use(
     saveUninitialized: false,
     store: sessionStore,
     cookie: {
-      secure: false,
+      // secure: false, caso o app esteja rodando na maquina local e true caso o app esteja rodando num servidor https
+      secure: true,
+      // secure: false,
     },
   })
 );
@@ -145,6 +147,8 @@ app.use('/', petsRouter);
 // db.sync({force: true})
 db.sync()
   .then(() => {
-    app.listen(3001);
+    // caso estiver rodando em uma maquina local o app.listen(3000)
+    app.listen(443);
+
   })
   .catch((err) => console.log(err));
