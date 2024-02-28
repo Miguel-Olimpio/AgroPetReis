@@ -21,6 +21,7 @@ import { petsRouter } from './routes/petsRoutes.js';
 import { veterinaryRecordRouter } from './routes/veterinaryRecordRoutes.js';
 import { requestRouter } from './routes/requestRoutes.js';
 import { adminRouter } from './routes/adminRoutes.js';
+import { checkHealthrouter } from './routes/healthRoutes.js'
 
 // Import Controllers
 import { RequestController } from './controllers/requestController.js';
@@ -128,6 +129,10 @@ const hbs = exphbs.create({
 });
 
 app.engine('handlebars', hbs.engine);
+
+app.use('/',checkHealthrouter, (req, res, next) => {
+  next();
+});
 
 app.use('/', authRouter);
 
