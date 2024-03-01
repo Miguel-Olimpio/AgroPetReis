@@ -4,6 +4,12 @@ import { Pet } from './Pets.js';
 import { User } from './user.js';
 
 const VeterinaryRecord = db.define('VeterinaryRecord', {
+  id: {
+    type: DataTypes.BIGINT,
+    primaryKey: true,
+    autoIncrement: true,
+    allowNull: false
+  },
   date: {
     type: DataTypes.DATE,
     allowNull: false,

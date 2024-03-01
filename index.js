@@ -71,6 +71,7 @@ app.use(express.json());
 const SequelizeStoreSession = SequelizeStore(session.Store);
 const sessionStore = new SequelizeStoreSession({
   db: db,
+  expiration: 3600000,
 });
 
 app.use(

@@ -4,6 +4,12 @@ import { User } from './user.js';
 import { AdminUsers } from './admin.js';
 
 const Scheduling = db.define('Scheduling', {
+  id: {
+    type: DataTypes.BIGINT,
+    primaryKey: true,
+    autoIncrement: true,
+    allowNull: false
+  },
   date: {
     type: DataTypes.DATE,
     allowNull: false,
@@ -20,9 +26,5 @@ const Scheduling = db.define('Scheduling', {
 
 Scheduling.belongsTo(User);
 User.hasMany(Scheduling);
-
-// Certifique-se de que './admin.js' exporta AdminUsers diretamente
-// Scheduling.belongsTo(AdminUsers);
-// AdminUsers.hasMany(Scheduling);
 
 export { Scheduling };
